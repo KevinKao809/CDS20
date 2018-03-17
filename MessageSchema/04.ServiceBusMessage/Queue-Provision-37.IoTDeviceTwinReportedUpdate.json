@@ -1,0 +1,15 @@
+{
+  "job": "device management",
+  "entity": "iotdevice",
+  "entityId": 12,
+  "task": "update device reported property to db",  
+  "requester": "IoTHubReceiver_IoTHubAliasName",
+  "requestDateTime": "2017-02-19T15:54:26.4208436Z",
+  "Content": {
+    "IothubConnectionString": "xxxxxxx",
+    "iothubDeviceId": "ACarDevice002",
+    "deviceConfiguration": {
+      "CDS_LastUpdatedTimestamp": 1495077112
+    }
+  }  
+}

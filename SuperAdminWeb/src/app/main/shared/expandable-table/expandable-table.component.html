@@ -1,0 +1,94 @@
+
+<div class="table-action-header">
+
+  <div class="entry-display-wrapper">
+    <span>Show</span>
+    <select [(ngModel)]="displayEntriesNumber">
+      <option>5</option>
+      <option>10</option>
+      <option>25</option>
+      <option>50</option>
+      <option>100</option>
+    </select>
+    <span>entries</span>
+  </div>
+
+  <div class="table-search-wrapper">
+    <span class="table-search-display-text">Search</span>
+    <input class = "table-search-bar" type='text' (keyup)='updateFilter($event)' />
+  </div>
+
+</div>
+
+<ngx-datatable #genericTable
+          class="material"
+          [columnMode]="'flex'"
+          [limit]="displayEntriesNumber"
+          [sortType]="'single'"
+          [rows]="rows"
+          [rowHeight]="60"
+          [selected]="selected"
+          [selectionType]="'single'"
+          [headerHeight]="40"
+          [footerHeight]="50"
+          (select)='rowSelect($event)'
+          (sort)='rowSort($event)'>
+
+    <!-- Row Expand Panel Template -->
+    <ngx-datatable-row-detail #myDetailRow
+      [rowHeight]="'auto'"
+      (toggle)="onDetailToggle($event)">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+        <ng-container [ngTemplateOutlet]='expandRow'></ng-container>
+      </ng-template>
+    </ngx-datatable-row-detail>
+
+    <!-- Column -->
+    <ng-container *ngFor='let columnName of displayedColumns; let i = index'>
+
+      <ngx-datatable-column
+        name="{{columnName}}"
+        sortable="true"
+        prop="{{columnName}}"
+        [flexGrow]="cellClass[i]"
+        headerClass="table-column"
+        cellClass="table-column">
+
+        <!-- Customized Column -->
+        <ng-container *ngIf='tableSetting.customizedColumn && columnName == tableSetting.customizedColumn'>
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+              <div [innerHTML]="value"></div>
+              <ng-template *ngTemplateOutlet="customizedColumnTemplate"></ng-template>
+            </ng-template>
+        </ng-container>
+
+        <!-- Inline Edit Column -->
+        <ng-container *ngIf='tableSetting.inlineEdit'>
+          <ng-container *ngFor="let inlineColumn of tableSetting.inlineEdit">
+            <ng-container *ngIf='inlineColumn == columnName'>
+              <ng-template let-row="row" let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                  <!-- <input /> -->
+                  <span *ngIf="currentInlineEditing !== row.Id" [innerHTML]="value | sanitizeHtml">  </span>
+                  <input appClickStopPropagation autofocus class="inline-edit-input" (input)="updateInline()" [(ngModel)]="inlineUpdateValue" *ngIf="currentInlineEditing == row.Id" type="text" />
+                </ng-template>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <!-- Normal Column -->
+        <ng-container>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div id="{{row.Id}}-{{columnName | removeSpace}}" [innerHTML]="value | sanitizeHtml" ></div>
+          </ng-template>
+        </ng-container>
+
+      </ngx-datatable-column>
+
+    </ng-container>
+  </ngx-datatable>
+
+
+<!-- Expand Row Template -->
+<ng-template #expandRow>
+  <ng-container *ngTemplateOutlet="slidePaneltemplate"></ng-container>
+</ng-template>

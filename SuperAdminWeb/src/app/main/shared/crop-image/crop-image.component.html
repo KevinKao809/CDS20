@@ -1,0 +1,34 @@
+<div class="crop-image-wrapper" [@fadeInOut]='isOpen == "open" ? "fadeIn" : "fadeOut"'>
+  <div class="crop-image-panel" [@slideIn]='isOpen == "open" ? "in" : "out"'>
+
+    <div class="crop-title">Crop Image</div>
+
+    <div class="crop-area">
+      <image-cropper
+        [imageChangedEvent]="inputImageEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="1 / 1"
+        [resizeToWidth]="200"
+        format="png"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded()"
+        (loadImageFailed)="loadImageFailed()">
+      </image-cropper>
+    </div>
+
+    <div class="confirm-area">
+
+      <div class="preview-image-wrapper">
+        <div class="preview-crop-image-text">Preview</div>
+        <img class="crop-display-image" [src]="croppedImage" />
+      </div>
+
+      <div class="confirm-button-area">
+          <button class="cds-btn-primary main-content-button" type="button" (click)="cancelCrop()">Cancel</button>
+          <button class="cds-btn-primary main-content-button" type="button" (click)="confirmCrop()">Confirm</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

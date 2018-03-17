@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script src="http://msghub20.dev.iot-cds.net/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- SignalR -->
+    <script src="http://msghub20.dev.iot-cds.net/Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="http://msghub20.dev.iot-cds.net/signalr/hubs"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $.connection.hub.url = 'http://msghub20.dev.iot-cds.net/signalr';
+            var hub = $.connection.RTMessageHub;
+            hub.client.onReceivedMessage = function (message) {
+                alert(message);
+                var HeartbeatMessage = $.parseJSON(message);
+                if (HeartbeatMessage.topic == 'IoTHubEventProcessor Heartbeat') {
+                    UpdateIoTHubReceiver(HeartbeatMessage.iotHubAlias, HeartbeatMessage);
+                }
+            };
+
+            $.connection.hub.start({ withCredentials: false }).done(function () {
+                hub.server.register("0");
+            });
+        })
+    </script>
+</body>
+</html>

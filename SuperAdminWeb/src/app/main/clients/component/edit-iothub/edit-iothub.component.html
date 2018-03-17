@@ -1,0 +1,41 @@
+<div class="expand-layer-header">
+  <div class="expand-layer-title">Iot Hub</div>
+  <button class="secon-main-btn cds-btn-primary main-content-button" (click)="addBtnClick()">
+      <i class="main-content-btn-icon icon-icon-plus"></i>
+      <span>Add IoT Hub</span>
+  </button>
+</div>
+
+<div class="expand-layer-content">
+  <app-expandable-table [slidePaneltemplate]="detailPanel"
+                        [customizedColumnTemplate]="buttomColumn"
+                        [tableSetting]="tableConfig"
+                        [receivedCommand]="toTableCommamd"
+                        (toParentCommand)="receiveCommand($event)">
+  </app-expandable-table>
+</div>
+
+<!-- Action button -->
+<ng-template #buttomColumn>
+  <div class='table-action-wrapper defaule-hide'>
+    <button appClickStopPropagation class= 'table-cell-btn cds-btn-highlight btn-outine' (click)='changeExpandContent(0)'>Detail</button>
+    <button appClickStopPropagation class= 'table-cell-btn cds-btn-highlight btn-outine' (click)='changeExpandContent(1)'>Monitor</button>
+  </div>
+</ng-template>
+
+<!-- expand panel -->
+<ng-template let-name="name"  #detailPanel>
+
+    <div class="expand-layer">
+
+      <ng-container *ngIf="iotHubExpandContentId == 'iotHubDetail'">
+        <app-edit-iothub-detail (toIotHubCommand)='receiveCommand($event)' [tableObject]='tableConfig' [editObject]='secondLayerObj'></app-edit-iothub-detail>
+      </ng-container>
+
+      <ng-container *ngIf="iotHubExpandContentId == 'iotHubMonitor'">
+        <app-edit-iothub-monitor [realTimeData] = "iotHubUpdatedData" [monitorObject]='secondLayerObj'></app-edit-iothub-monitor>
+      </ng-container>
+
+    </div>
+
+</ng-template>

@@ -1,0 +1,34 @@
+<div class='main-content-title'>
+  <div class="page-title">System Configuration</div>
+</div>
+
+<div class="button-nav">
+  <button class = "cds-btn-highlight btn-outine"
+          *ngFor="let groupName of systemConfigGroup"
+          (click)="selectGroup(groupName)">{{groupName}}
+  </button>
+</div>
+
+<div class="display-board">
+  <div class="display-board-header">Group: {{currentGroup}}</div>
+
+  <app-expandable-table [tableSetting]="tableConfig"
+                        [customizedColumnTemplate]="buttomColumn"
+                        [receivedCommand]="toTableCommamd"
+                        (toParentCommand)="receiveCommand($event)">
+  </app-expandable-table>
+
+</div>
+
+
+<!-- buttom column template  -->
+<ng-template #buttomColumn>
+  <div class='table-action-wrapper defaule-hide'>
+    <button appClickStopPropagation class = "table-cell-btn cds-btn-second" matTooltip="Undo All Edit" (click)="undoAllEdit()">
+      <i class="icon-icon-reset"></i>
+    </button>
+    <button appClickStopPropagation class = "table-cell-btn cds-btn-second" matTooltip="Save" (click)="confirmEdit()">
+      <i class="icon-icon-save"></i>
+    </button>
+  </div>
+</ng-template>

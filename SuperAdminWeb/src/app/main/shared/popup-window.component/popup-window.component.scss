@@ -1,0 +1,98 @@
+@import "../../../../assets/scss/_variable.scss";
+@import "../../../../assets/scss/_mixin.scss";
+
+
+.feedback-wrapper{
+  display: inline-block;
+  position: fixed;
+  z-index: $layer-highest;
+  top: $heraderHeight;
+  right: $spacing-40;
+  padding: 0 $spacing-15;
+  color: $whiteColor;
+  height: $feedbackHeight;
+  line-height: $feedbackHeight;
+  opacity: 0.8;
+  @include boxshadow();
+  &.success{
+    background:$succrssFeedbackColor;
+  }
+  .feedback-icon{
+    font-size: $pageTitleFontSize;
+    position: relative;
+    top: 4px;
+    margin-right: $spacing-5;
+  }
+}
+
+.error-feedback-wrapper{
+  display: inline-block;
+  position: fixed;
+  z-index: $layer-highest;
+  top: $heraderHeight;
+  right: $spacing-40;
+  padding: 0 $spacing-15;
+  color: $whiteColor;
+  line-height: $feedbackHeight;
+  opacity: 0.8;
+  @include boxshadow();
+
+  &.error{
+    background:$warningColor;
+  }
+
+  .error-feedback-icon{
+    font-size: $pageTitleFontSize;
+    position: relative;
+    top: 4px;
+    margin-right: $spacing-5;
+  }
+}
+
+.screen-overlap{
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  background: $screenOverlayColor;
+}
+
+.confirm-wrapper{
+  position: absolute;
+  z-index: $layer-highest;
+  background: $whiteColor;
+  border: 1px solid $confirmDialogTextColor;
+  color: $confirmDialogTextColor;
+  height: $warningDialogHeight;
+  line-height: $warningDialogHeight;
+  padding: 0 $spacing-15;
+  @include boxshadow();
+
+  .confirm-dialog-icon{
+    display: inline-block;
+    margin-right: $spacing-10;
+
+    .confirm-dialog-sign{
+      position: relative;
+      top:10px;
+      font-size: $warningIconSize;
+    }
+  }
+
+  .confirm-dialog-text{
+    display: inline-block;
+    margin-right: $spacing-10;
+  }
+  .confirm-dialog-button-wrapper{
+    display: inline-block;
+    .confirm-icon-btn{
+      font-size: $navIconSize;
+      .confirm-dialog-btn-icon{
+        position: relative;
+        top:2px;
+      }
+    }
+  }
+}

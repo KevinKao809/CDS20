@@ -1,0 +1,14 @@
+{
+  "job": "provisioning",
+  "entity": "company",
+  "entityId": 50,
+  "task": "create azure storage",
+  "taskId": 1509,
+  "Content": {
+    "companyId":  50,
+    "location": "East Asia"
+  },  
+  "requester": "Kevin Kao",
+  "requesterEmail": "kevika@microsoft.com",
+  "requestDateTime": "2017-02-19T15:46:02.2935009Z"
+}

@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ADA6ACCA-E1B1-403E-BC57-2BB1448D603C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CDSShareLib</RootNamespace>
+    <AssemblyName>CDSShareLib</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET-AnyCPU, Version=7.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.0.0022\lib\net40-client\Magick.NET-AnyCPU.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET.Core, Version=7.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.0.0022\lib\net40-client\Magick.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Amqp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Amqp.2.1.3\lib\net45\Microsoft.Azure.Amqp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Devices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Devices.1.5.1\lib\net451\Microsoft.Azure.Devices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Devices.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.Devices.Shared.1.4.1\lib\net451\Microsoft.Azure.Devices.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Documents.Client, Version=1.20.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.DocumentDB.1.20.2\lib\net45\Microsoft.Azure.Documents.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.ServiceBus.4.1.7\lib\net45\Microsoft.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.9.0.0\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLCrypto, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d4421c8a4786956c, processorArchitecture=MSIL">
+      <HintPath>..\packages\PCLCrypto.2.0.147\lib\net45\PCLCrypto.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.BCrypt, Version=0.5.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.BCrypt.0.5.111\lib\net45\PInvoke.BCrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.Kernel32, Version=0.5.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Kernel32.0.5.111\lib\net45\PInvoke.Kernel32.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.NCrypt, Version=0.5.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.NCrypt.0.5.111\lib\net45\PInvoke.NCrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="PInvoke.Windows.Core, Version=0.5.0.0, Culture=neutral, PublicKeyToken=9e300f9f87f04a7a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PInvoke.Windows.Core.0.5.111\lib\net35\PInvoke.Windows.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.2.6\lib\net46\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebSockets, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.WebSockets.4.0.0\lib\net46\System.Net.WebSockets.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.WebSockets.Client, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.WebSockets.Client.4.0.0\lib\net46\System.Net.WebSockets.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.1.1\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.2.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.0.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.0.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.1.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Validation, Version=2.4.0.0, Culture=neutral, PublicKeyToken=2fc06f0d701809a7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Validation.2.4.18\lib\net45\Validation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccumulateUsageLog.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APIServiceRefreshToken.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APIServiceRole.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Application.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CDS20DB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CDS20DB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CDS20DB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CDS20DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CDS20DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyInSubscriptionPlan.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardWidgets.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceCertificate.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceType.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeInRole.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentClass.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentClassMessageCatalog.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentEnrollment.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorMessage.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventInAction.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventRuleCatalog.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventRuleItem.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExternalDashboard.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Factory.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\AzureSQLHelper.cs" />
+    <Compile Include="Helper\BlobStorageHelper.cs" />
+    <Compile Include="Helper\CDSExceptionHelp.cs" />
+    <Compile Include="Helper\DocDBHelper.cs" />
+    <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\IoTHubHelper.cs" />
+    <Compile Include="Helper\LogHelper.cs" />
+    <Compile Include="Helper\RedisCacheHelper.cs" />
+    <Compile Include="Helper\WebHelper.cs" />
+    <Compile Include="IoTDevice.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IoTDeviceCustomizedConfiguration.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IoTDeviceSystemConfiguration.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IoTHub.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageCatalog.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageElement.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageMandatoryElementDef.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MetaDataDefination.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MetaDataValue.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationTask.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PermissionCatalog.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RefCultureInfo.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceBus\Helper.cs" />
+    <Compile Include="ServiceBus\Model\BaseModel.cs" />
+    <Compile Include="ServiceBus\Model\CosmosDBCollectionCreateModel.cs" />
+    <Compile Include="ServiceBus\Model\CosmosDBCollectionDeleteModel.cs" />
+    <Compile Include="ServiceBus\Model\CosmosDBCollectionUpdateModel.cs" />
+    <Compile Include="ServiceBus\Model\IoTDeviceDeleteModel.cs" />
+    <Compile Include="ServiceBus\Model\IoTDeviceRegisterModel.cs" />
+    <Compile Include="ServiceBus\Model\IoTDeviceUpdateModel.cs" />
+    <Compile Include="ServiceBus\Model\IoTHubReceiverModel.cs" />
+    <Compile Include="ServiceBus\Task.cs" />
+    <Compile Include="SubscriptionPlan.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SuperAdmin.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemConfiguration.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRole.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRolePermission.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WidgetCatalog.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WidgetClass.cs">
+      <DependentUpon>CDS20DB.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="CDS20DB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CDS20DB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="CDS20DB.edmx.diagram">
+      <DependentUpon>CDS20DB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CDS20DB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CDS20DB.Context.cs</LastGenOutput>
+      <DependentUpon>CDS20DB.edmx</DependentUpon>
+    </Content>
+    <Content Include="CDS20DB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CDS20DB.edmx</DependentUpon>
+      <LastGenOutput>CDS20DB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Azure.DocumentDB.1.20.2\build\Microsoft.Azure.DocumentDB.targets" Condition="Exists('..\packages\Microsoft.Azure.DocumentDB.1.20.2\build\Microsoft.Azure.DocumentDB.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Azure.DocumentDB.1.20.2\build\Microsoft.Azure.DocumentDB.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Azure.DocumentDB.1.20.2\build\Microsoft.Azure.DocumentDB.targets'))" />
+  </Target>
+</Project>

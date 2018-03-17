@@ -1,0 +1,20 @@
+{
+  "job": "send email",
+  "entity": "company",
+  "entityId": 50,
+  "task": "send email",
+  "taskId": 1509,
+  "emailProvider":  "sendgrid",
+  "Content": {
+    "senderName": "First Name, Last Name",
+    "senderEmail": "email@abc.com",
+    "receverName": "Frist Name, Last Name",
+    "receverEmail": "email@abc.com",
+    "subject": "This is Subject",
+    "plainTextContent": "Email Contnet",
+    "htmlContent": "<img src='' />Email Content"
+  },
+  "requester": "Kevin Kao",
+  "requesterEmail": "kevika@microsoft.com",
+  "requestDateTime": "2017-02-19T15:46:02.2935009Z"
+}

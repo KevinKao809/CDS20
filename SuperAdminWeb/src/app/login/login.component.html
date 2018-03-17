@@ -1,0 +1,55 @@
+<div class="login-page-wrapper">
+
+    <div class="login-page-center">
+
+      <div class="login-page-logo-area">
+        <div class="login-page-logo-img">
+          <img class="logo-img" src="../../assets/images/CDS_Logo.svg" alt="logo">
+        </div>
+        <div class="login-page-logo-text">Connected Device Studio</div>
+      </div>
+
+      <div class="login-page-input-area" [ngClass]="errorShakeAnimation">
+        <div class="row">
+            <div class="col-lg-12 login-web-name">Super Admin</div>
+        </div>
+        <!-- Email -->
+        <div class="row input-wrapper">
+          <div class="col-lg-12">
+              <i class="login-icon icon-icon-email"></i>
+            <input class="login-input" [(ngModel)] = "userMail" placeholder="email" />
+          </div>
+        </div>
+        <!-- Password -->
+        <div class="row input-wrapper">
+          <div class="col-lg-12">
+            <i class="login-icon icon-icon-password"></i>
+            <input class="login-input" [(ngModel)] = "userPassword" type="password" placeholder="password" />
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div class="row error-wrapper">
+          <div class="col-lg-12">
+            <div class="error-text" [hidden]="loginErrorText">{{errorWording}}</div>
+          </div>
+        </div>
+
+
+        <div class="row login-action-wrapper">
+            <div class="col-lg-12">
+                <mat-checkbox class="checkbox-material" disableRipple>Remember me</mat-checkbox>
+                <div class="login-btn-wrapper">
+                  <button class="btn cds-btn-primary login-button" (click)="sendLogin()">
+                    <i class="login-icon icon-icon-login"></i>
+                    <span>Login</span>
+                  </button>
+                </div>
+            </div>
+        </div>
+
+      </div>
+
+      <div class="cds-version">Connected Device Studio Version {{cdsVersion}}</div>
+    </div>
+</div>

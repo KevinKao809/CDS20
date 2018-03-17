@@ -1,0 +1,20 @@
+{
+  "job": "provisioning iotdevice",
+  "entity": "iotdevice",
+  "entityId": 12,
+  "task": "disable iot device",
+  "taskId": 1512,
+  "IothubConnectionString": "xxxxxx",
+  "Content": 
+    [
+      { "iothubDeviceId": "ACarDevice001" },
+      { "iothubDeviceId": "ACarDevice002" },
+      { "iothubDeviceId": "ACarDevice003" },
+      { "iothubDeviceId": "ACarDevice004" },
+      { "iothubDeviceId": "ACarDevice005" }
+    ]
+  ,
+  "requester": "Admin A-Car",
+  "requesterEmail": "admin@a-car.com",
+  "requestDateTime": "2017-02-19T15:54:26.4208436Z"
+}

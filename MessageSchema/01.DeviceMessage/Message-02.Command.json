@@ -1,0 +1,20 @@
+[
+  {
+    "DeviceConfiguration": {
+      "SF_SystemConfig": {
+        "MinSmartFactorySDKVersion": 5
+      },
+      "SF_CustomizedConfig": {
+        "Interval": 30
+      },
+      "SF_LastUpdatedTimestamp": 1495077112
+    }  
+  },
+  //Below are Message Properties, You shall add on code level, not part of payload
+  {
+    "CDSVersion": "2.0",
+    "CompanyId": "49",
+    "MessageType": "Commnad",
+    "CommandName": "UpdateDeviceReportedProperties"
+  }
+]

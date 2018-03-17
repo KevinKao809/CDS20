@@ -1,0 +1,191 @@
+﻿<link rel="stylesheet" href="~/assets/css/notify-page.css" />
+<link rel="stylesheet" href="~/assets/css/lib/datatables.min.css" />
+
+@section scripts{
+    <script src="~/assets/js/lib/datatables.min.js"></script>
+    <script src="~/assets/js/renderNotifyList.js"></script>
+    <script src="~/assets/js/signalR-control.js"></script>
+    <script src="~/assets/js/main.js"></script>
+}
+
+<!-- Modal -->
+<div class="modal fade" id="notify-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Notification Information</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="notify-main-area">
+
+    <!--Notify Counting Card Area-->
+    <div class="card-count-area col-lg-4 col-md-4 col-sm-12 col-xs-12">
+
+        <!--Email notify-->
+        <div class="card-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card-half-content col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="card-icon-area">
+                    <span class="glyphicon glyphicon-envelope border-circle card-icon"></span>
+                </div>
+                <div class="card-text-area">Email Notify</div>
+            </div>
+            <div id="mail-count-number" class="card-half-content card-count-number col-lg-6 col-md-6 col-sm-6 col-xs-6">0</div>
+        </div>
+
+        <!--SMS notify-->
+        <div class="card-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card-half-content col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="card-icon-area">
+                    <span class="glyphicon glyphicon-comment border-circle card-icon"></span>
+                </div>
+                <div class="card-text-area">SMS Notify</div>
+            </div>
+            <div id="sms-count-number" class="card-half-content card-count-number col-lg-6 col-md-6 col-sm-6 col-xs-6">0</div>
+        </div>
+
+        <!--ERP notify-->
+        <div class="card-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card-half-content col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="card-icon-area">
+                    <span class="glyphicon glyphicon-cog border-circle card-icon"></span>
+                </div>
+                <div class="card-text-area">ERP Notify</div>
+            </div>
+            <div id="erp-count-number" class="card-half-content card-count-number col-lg-6 col-md-6 col-sm-6 col-xs-6">0</div>
+        </div>
+
+        <!--MES notify-->
+        <div class="card-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card-half-content col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="card-icon-area">
+                    <span class="glyphicon glyphicon-calendar border-circle card-icon"></span>
+                </div>
+                <div class="card-text-area">MES Notify</div>
+            </div>
+            <div id="mes-count-number" class="card-half-content card-count-number col-lg-6 col-md-6 col-sm-6 col-xs-6">0</div>
+        </div>
+
+    </div>
+   
+    <!--Notify Counting Table Area-->
+    <div class="table-count-area col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+        <div id="table-filter-header" class="table-filter-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <div class="radio-btn filter-selection">
+                <input id="radio-all" name="radio" type="radio" class="filter-btn" data-filter="all" checked>
+                <label for="radio-all" class="radio-label">All</label>
+            </div>
+
+            <div class="radio-btn filter-selection">
+                <input id="radio-email" name="radio" type="radio" class="filter-btn" data-filter="email">
+                <label for="radio-email" class="radio-label">Email</label>
+            </div>
+
+            <div class="radio-btn filter-selection">
+                <input id="radio-sms" name="radio" type="radio" class="filter-btn" data-filter="sms">
+                <label for="radio-sms" class="radio-label">SMS</label>
+            </div>
+
+            <div class="radio-btn filter-selection">
+                <input id="radio-erp" name="radio" type="radio" class="filter-btn" data-filter="erp">
+                <label for="radio-erp" class="radio-label">ERP</label>
+            </div>
+
+            <div class="radio-btn filter-selection">
+                <input id="radio-mes" name="radio" type="radio" class="filter-btn" data-filter="mes">
+                <label for="radio-mes" class="radio-label">MES</label>
+            </div>
+
+
+
+        </div>
+
+       
+        <div class="notify-table-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            
+            <!--All Table-->
+            <table id="all-notify-data-table" class="notify-table table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Type</th>
+                        <th>DateTime</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+            </table>
+            
+            <!--Email Table-->
+            <table id="email-notify-data-table" class="notify-table table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Sender</th>
+                        <th>Receiver</th>
+                        <th>Subject</th>
+                        <th>DateTime</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!--SMS Table-->
+            <table id="sms-notify-data-table" class="notify-table table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Sender Phone</th>
+                        <th>Receiver Phone</th>
+                        <th>Content</th>
+                        <th>DateTime</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!--ERP Table-->
+            <table id="erp-notify-data-table" class="notify-table table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Equip ID</th>
+                        <th>Equip Name</th>
+                        <th>Event Code</th>
+                        <th>Event Message</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!--MES Table-->
+            <table id="mes-notify-data-table" class="notify-table table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>sender</th>
+                        <th>Receiver</th>
+                        <th>Content</th>
+                        <th>DateTime</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    
+
+</div>
+
+<!-- SignalR -->
+<script src="/Scripts/jquery.signalR-2.2.2.js"></script>
+<script src="/signalr/hubs"></script>

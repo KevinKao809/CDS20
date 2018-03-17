@@ -1,0 +1,193 @@
+<div class='main-content-title'>
+    <div class="page-title">Super Admin</div>
+    <button class="cds-btn-primary main-content-button" (click)="addBtnClick()">
+        <i class="main-content-btn-icon icon-icon-plus"></i>
+        <span>Add Super Admin</span>
+    </button>
+</div>
+
+
+<div class="table-wrapper">
+    <!-- ExpandTable Component -->
+  <app-expandable-table [slidePaneltemplate]="detailPanel"
+                        [tableSetting] = "tableConfig"
+                        [receivedCommand]="toTableCommamd"
+                        (toParentCommand)="receiveCommand($event)">
+  </app-expandable-table>
+</div>
+
+<!-- Expand Panel -->
+<ng-template let-name="name"  #detailPanel>
+  <div class="second-layer expand-layer">
+    <form #editForm="ngForm" (ngSubmit)="confirmEdit(editForm)" novalidate>
+
+      <div class="expand-layer-header">
+        <div class="expand-layer-title" *ngIf="toTableCommamd.isNew">Add Super Admin</div>
+        <div class="expand-layer-title" *ngIf="!toTableCommamd.isNew">Edit Super Admin</div>
+
+        <div class="expand-layer-btn-group">
+          <!-- undo -->
+          <div class="expand-layer-btn-wrapper" *ngIf="!toTableCommamd.isNew" [hidden]="editForm.pristine">
+            <button type="button" class='icon-btn' (click)="undoAllEdit()" matTooltip="Undo All Edit">
+                <i class="expand-layer-btn-icon icon-icon-reset"></i>
+            </button>
+          </div>
+
+          <!-- save employee Info -->
+          <div class="expand-layer-btn-wrapper">
+            <button type="submit" class='icon-btn' [ngClass]="{'enable-icon': editForm.valid}" [disabled]="!editForm.valid || editForm.pristine"  matTooltip="Save">
+                <i class="expand-layer-btn-icon second-layer-btn icon-icon-save"></i>
+            </button>
+          </div>
+
+          <!-- delete or cancel company -->
+          <div class="expand-layer-btn-wrapper">
+
+            <!-- Cancel Panel -->
+            <button *ngIf="toTableCommamd.isNew" type="button" class='icon-btn' matTooltip="Cancel" (click)="cancelAddItem()">
+                <i  class="expand-layer-btn-icon second-layer-btn icon-icon-cancel"></i>
+            </button>
+
+            <!-- Delete -->
+            <button *ngIf="!toTableCommamd.isNew" type="button" class='icon-btn warning-icon' matTooltip="Delete" (click)="deleteConfirmDialog($event)">
+                <i  class="expand-layer-btn-icon second-layer-btn icon-icon-delete-purge"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="expand-layer-content">
+
+        <div class="row">
+
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="row">
+              <!-- Left Info -->
+              <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                <!-- FirstName -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*First Name</div>
+                  <div class="input-content">
+                    <input name="superAdminFirstName" required [(ngModel)]="detailInfo.firstName" #superAdminFirstName="ngModel"/>
+                    <div class="input-error-hint" [hidden]="!superAdminFirstName.errors?.required || superAdminFirstName.pristine">Required</div>
+                  </div>
+                </div>
+
+                <!-- LastName -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*Last Name</div>
+                  <div class="input-content">
+                    <input name="superAdminLastName" required [(ngModel)]="detailInfo.lastName" #superAdminLastName="ngModel" />
+                    <div class="input-error-hint" [hidden]="!superAdminLastName.errors?.required || superAdminLastName.pristine">Required</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Right Info -->
+              <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                <!-- Email -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*Email</div>
+                  <div class="input-content">
+                    <input email name="superAdminEmail" type="email" [(ngModel)]="detailInfo.email" #superAdminEmail="ngModel" />
+                    <div class="input-error-hint" [hidden]="!superAdminEmail.errors?.email || superAdminEmail.pristine">Wrong Email Format</div>
+                  </div>
+                </div>
+
+                <!-- Active -->
+                <div class="input-wrapper row" [hidden]="toTableCommamd.isNew">
+                    <div class="input-tag">Active</div>
+                    <div class="input-content">
+
+                      <div class="radio-group-wrapper">
+                        <mat-radio-group name="superAdminNewPasswordDeletedFlag" [(ngModel)]="detailInfo.deletedFlag">
+                          <mat-radio-button class="table-radio-btn" disableRipple [value]="false" [checked]="!detailInfo.deletedFlag">Active</mat-radio-button>
+                          <mat-radio-button class="table-radio-btn" disableRipple [value]="true" [checked]="detailInfo.deletedFlag">Inactive</mat-radio-button>
+                        </mat-radio-group>
+                      </div>
+
+                    </div>
+                </div>
+
+                <!-- Add setting password -->
+                <ng-container *ngIf="toTableCommamd.isNew">
+
+
+                  <!-- password -->
+                  <div class="input-wrapper row">
+                      <div class="input-tag">*Password</div>
+                      <div class="input-content">
+                          <input type="password" name="superAdminNewPassword" required [(ngModel)]="detailInfo.password" #superAdminNewPassword='ngModel' />
+                          <div class="input-error-hint" [hidden]="!superAdminNewPassword.errors?.required || superAdminNewPassword.pristine">Required</div>
+                      </div>
+                  </div>
+
+                  <!-- Confirm New Password -->
+                  <div class="input-wrapper row">
+                      <div class="input-tag">*Confirm Password</div>
+                      <div class="input-content">
+                          <input type="password" name="superAdminConfirmPassword" [(ngModel)]="detailInfo.confirmPassword" [equalTo]="superAdminNewPassword" #superAdminConfirmPassword='ngModel' />
+                          <div class="input-error-hint" [hidden]="!superAdminConfirmPassword.errors?.equalTo || superAdminConfirmPassword.pristine">Password Not Match</div>
+                        </div>
+                  </div>
+
+                </ng-container>
+
+                <!-- Edit's reset password -->
+                <ng-container *ngIf="!toTableCommamd.isNew">
+                  <!-- Reset password button -->
+                  <div class="input-wrapper row">
+                      <div class="input-tag">
+                        <button type="button" (click)="resetPasswordStatus = !resetPasswordStatus" >Reset Password</button>
+                      </div>
+                  </div>
+
+                  <ng-container *ngIf="resetPasswordStatus">
+                    <!-- Reset Password show/hide container -->
+                    <div class="reset-password-wrapper">
+
+                      <!-- New password -->
+                      <div class="input-wrapper row">
+                        <div class="input-tag">*Old Password</div>
+                        <div class="input-content">
+                            <input type="password" name="superAdminOldPassword" required [(ngModel)]="detailInfo.oldpassword" #superAdminOldPassword='ngModel' />
+                            <div class="input-error-hint" [hidden]="!superAdminOldPassword.errors?.required || superAdminOldPassword.pristine">Required</div>
+                        </div>
+                    </div>
+
+                      <!-- New password -->
+                      <div class="input-wrapper row">
+                          <div class="input-tag">*New Password</div>
+                          <div class="input-content">
+                              <input type="password" name="superAdminNewPassword" required [(ngModel)]="detailInfo.password" #superAdminNewPassword='ngModel' />
+                              <div class="input-error-hint" [hidden]="!superAdminNewPassword.errors?.required || superAdminNewPassword.pristine">Required</div>
+                          </div>
+                      </div>
+
+                      <!-- Confirm New Password -->
+                      <div class="input-wrapper row">
+                          <div class="input-tag">*Confirm Password</div>
+                          <div class="input-content">
+                              <input type="password" name="superAdminConfirmPassword" [(ngModel)]="detailInfo.confirmPassword" [equalTo]="superAdminNewPassword" #superAdminConfirmPassword='ngModel' />
+                              <div class="input-error-hint" [hidden]="!superAdminConfirmPassword.errors?.equalTo || superAdminConfirmPassword.pristine">Password Not Match</div>
+                          </div>
+                      </div>
+
+                    </div>
+                  </ng-container>
+                </ng-container>
+
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

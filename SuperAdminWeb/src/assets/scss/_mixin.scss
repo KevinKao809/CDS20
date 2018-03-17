@@ -1,0 +1,64 @@
+//shadows
+@mixin boxshadow($h-offset:0px, $v-offset:3px, $blur:4.7px, $distributed:0.3px, $color: rgba(0, 0, 0, 0.24), $type:null){
+  -webkit-box-shadow: $type $h-offset $v-offset $blur $distributed $color;
+  -moz-box-shadow: $type $h-offset $v-offset $blur $distributed $color;
+  box-shadow: $type $h-offset $v-offset $blur $distributed $color;
+}
+
+@mixin textshadow($h-offset:2px, $v-offset:2px, $color:#000, $blur:0px){
+  text-shadow: $h-offset $v-offset  $blur $color;
+}
+
+@mixin fontWeight($size:500){
+  font-size: $size;
+}
+
+@mixin transition($attr:all, $second:.2s, $type:ease-out, $delay: null){
+  -webkit-transition: $attr $second $type;
+  -moz-transition: $attr $second $type;
+  -o-transition: $attr $second $type;
+  transition: $attr $second $type;
+
+  -webkit-transition-delay: $delay;
+  -moz-transition-delay: $delay;
+  -o-transition-delay: $delay;
+  transition-delay: $delay;
+
+}
+
+@mixin round-element($size, $background){
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+  background:$background;
+}
+
+@mixin outlineWrapper($outlineColor: #00aced, $actionFontColor: #fff){
+  background: none;
+  border: 1px solid;
+  color:$outlineColor;
+  &:hover, &:active{
+    background: $outlineColor;
+    color: $actionFontColor;
+    border: 1px solid $outlineColor;
+  }
+}
+
+@mixin shakeAnimation(){
+      @-webkit-keyframes horizontalShake {
+        10%, 90% {
+          transform: translate3d(-1px, 0, 0);
+        }
+        20%, 80% {
+          transform: translate3d(2px, 0, 0);
+        }
+        30%, 50%, 70% {
+          transform: translate3d(-4px, 0, 0);
+        }
+        40%, 60% {
+          transform: translate3d(4px, 0, 0);
+        }
+      }
+        -webkit-animation: horizontalShake 0.82s cubic-bezier(.36,.07,.19,.97) 0s 1 alternate;
+      
+}

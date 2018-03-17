@@ -1,0 +1,40 @@
+<!-- Success Feedback -->
+<div class="feedback-wrapper {{feedbackMessageInfo.class}}" [@showMsg]="showFeedbackMessageFlag">
+  <span class="feedback-icon"><i class="{{feedbackMessageInfo.icon}}"></i></span>
+  <span class="feedback-text">{{feedbackMessageInfo.text}}</span>
+</div>
+
+<!-- Failed Feedback -->
+<div class="error-feedback-wrapper error" [@showMsg]="showErrorFeedbackMessageFlag">
+  <div>
+    <span class="error-feedback-icon"><i class="{{errorFeedbackMessageInfo.icon}}"></i></span>
+    <span class="error-feedback-text">{{errorFeedbackMessageInfo.text}}</span>
+  </div>
+
+  <div>
+      <span class="error-title">Error Code:</span>
+      <span class="error-feedback-text">{{errorFeedbackMessageInfo.errorCode}}</span>
+  </div>
+
+  <div>
+      <span class="error-title">Message:</span>
+      <span class="error-feedback-text">{{errorFeedbackMessageInfo.errorText}}</span>
+  </div>
+
+</div>
+
+<div class="screen-overlap" [hidden]="!showConfirmDialogFlag">
+  <div class="confirm-wrapper" [style.top.px]="confirmMessageInfo.posY + 150" [style.right.px]="innerWidth - confirmMessageInfo.posX">
+    <div class="confirm-dialog-icon"><i class="confirm-dialog-sign {{confirmMessageInfo.icon}}"></i></div>
+    <div class="confirm-dialog-text">{{confirmMessageInfo.text}}</div>
+    <div class="confirm-dialog-button-wrapper">
+      <button class='confirm-icon-btn icon-btn' (click)="confirmMessageInfo.confirm()">
+          <i class="confirm-dialog-btn-icon icon-icon-confirm" matTooltip="confirm"></i>
+      </button>
+
+      <button class='confirm-icon-btn icon-btn' (click)="confirmMessageInfo.cancel()">
+          <i class="confirm-dialog-btn-icon icon-icon-cancel" matTooltip="Cancel"></i>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "job": "shutdown iothub receiver",
+  "entity": "iothub",
+  "entityId": 12,
+  "task": "shutdown iothub receiver",
+  "taskId": 1512,
+  "Content": {
+    "companyId": 1,
+    "iotHubId": 1
+  },
+  "requester": "Admin A-Car",
+  "requesterEmail": "admin@a-car.com",
+  "requestDateTime": "2017-02-19T15:54:26.4208436Z"
+}

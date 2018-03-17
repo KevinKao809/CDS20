@@ -1,0 +1,14 @@
+{
+  "job": "provisioning iotdevice",
+  "entity": "iotdevice",
+  "entityId": 12,
+  "task": "remove iothub register",
+  "taskId": 1512,
+  "Content": {
+    "IothubConnectionString": "xxxxx",
+    "iothubDeviceId": "ACarDevice002"
+  },
+  "requester": "Admin A-Car",
+  "requesterEmail": "admin@a-car.com",
+  "requestDateTime": "2017-02-19T15:54:26.4208436Z"
+}

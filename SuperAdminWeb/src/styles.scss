@@ -1,0 +1,147 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "assets/icon-fonts/icon-fonts.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+@import "assets/scss/_variable.scss";
+@import "assets/scss/_mixin.scss";
+
+html{
+  width:100%;
+  height: 100%;
+  font-size: $mainFontSize;
+  body{
+    width:100%;
+    height: 100%;
+    *:focus{
+      outline: none;      //edit
+    }
+  }
+
+}
+
+.cds-btn-primary{
+  background: $primaryColor;
+  color:$whiteColor;
+  border:none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 3px;
+  @include transition();
+  &:hover, &:active{
+    opacity: .8;
+  }
+}
+
+.cds-btn-second{
+  background: $subIconButtonHoverColor;
+  color:$whiteColor;
+  border:none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 3px;
+  @include transition();
+  &:hover, &:active{
+    opacity: .8;
+  }
+}
+
+.cds-btn-warning{
+  background: $warningColor;
+  color:$whiteColor;
+  border:none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 3px;
+  @include transition();
+  &:hover, &:active{
+    opacity: .8;
+  }
+}
+
+.cds-btn-highlight{
+  background: $highlightColor;
+  color: $whiteColor;
+  border-radius: 3px;
+  padding: 6px 10px;
+  cursor: pointer;
+  @include transition();
+  &:hover, &:active{
+
+  }
+}
+
+.btn-outine{
+  @include outlineWrapper();
+}
+
+.icon-btn{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hidden-style{
+  display: none;
+}
+
+.cover-background-image{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.center-text{
+  text-align: center;
+}
+
+.status-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $subIconButtonDisabledColor;
+  display: inline-block;
+  margin-right:6px;
+
+  &.dot-expired{
+    background: $subIconButtonDisabledColor;
+  }
+
+  &.dot-active{
+    background: $succrssFeedbackColor;
+  }
+
+  &.dot-warning{
+    background: $warningColor;
+  }
+}
+
+.scrollbar{
+  overflow-y: hidden;
+  height:calc(100% - #{$nav-bar-footer});
+}
+  .scrollbar:hover{
+    overflow-y: auto;
+    height:calc(100% - #{$nav-bar-footer});
+  }
+  /* Scrollbar styles */
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    background: $greyWhite;
+    opacity: 0.9;
+    border-radius: 10px;
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $greyWhite;
+  }
+    .scrollbar::-webkit-scrollbar-thumb:hover {
+        background: $warmGrey;
+    }
+    // For Internet Explorer
+  body {
+    scrollbar-face-color: $greyWhite;
+    scrollbar-track-color: $tableRowColorOdd;
+  }

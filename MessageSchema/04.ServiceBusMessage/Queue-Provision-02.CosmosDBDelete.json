@@ -1,0 +1,14 @@
+{
+  "job": "provisioning",
+  "entity": "company",
+  "entityId": 12,
+  "task": "purge cosmosdb collection",
+  "taskId": 1508,
+  "Content": {
+    "companyId": 12
+  },
+  "cosmosDBConnectionString": "[null | AccountEndpoint=xxxxx]",
+  "requester": "Kevin Kao",
+  "requesterEmail": "kevika@microsoft.com",
+  "requestDateTime": "2017-02-19T15:44:00.473895Z"
+}

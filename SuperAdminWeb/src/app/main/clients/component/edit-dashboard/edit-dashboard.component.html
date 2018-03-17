@@ -1,0 +1,105 @@
+<div class="expand-layer-header">
+  <div class="expand-layer-title">Dashboard</div>
+  <button class="secon-main-btn cds-btn-primary main-content-button" (click)="addBtnClick()">
+      <i class="main-content-btn-icon icon-icon-plus"></i>
+      <span>Add Dashboard</span>
+  </button>
+</div>
+
+<div class="expand-layer-content">
+  <app-expandable-table [slidePaneltemplate]="detailPanel"
+                        [tableSetting]="tableConfig"
+                        [receivedCommand]="toTableCommamd"
+                        (toParentCommand)="receiveCommand($event)">
+  </app-expandable-table>
+</div>
+
+<ng-template let-name="name"  #detailPanel>
+
+    <div class="expand-layer">
+      <form #editForm="ngForm" (ngSubmit)="confirmEdit(editForm)" novalidate>
+        <div class="expand-layer-header">
+          <div class="expand-layer-title" *ngIf="!editObject.isNew">Edit Dashboard</div>
+          <div class="expand-layer-title" *ngIf="editObject.isNew">Add Dashboard</div>
+          <div class="expand-layer-btn-group">
+
+            <!-- undo -->
+            <div class="expand-layer-btn-wrapper" *ngIf="!editObject.isNew" [hidden]="editForm.pristine">
+              <button type="button" class='icon-btn' (click)="undoAllEdit()" matTooltip="Undo All Edit">
+                  <i class="expand-layer-btn-icon icon-icon-reset"></i>
+              </button>
+            </div>
+
+
+            <!-- save employee Info -->
+            <div class="expand-layer-btn-wrapper">
+              <button type="submit" class='icon-btn' [ngClass]="{'enable-icon': editForm.valid}" [disabled]="!editForm.valid || editForm.pristine"  matTooltip="Save">
+                  <i class="expand-layer-btn-icon icon-icon-save"></i>
+              </button>
+            </div>
+
+            <!-- delete or cancel company -->
+            <div class="expand-layer-btn-wrapper">
+
+              <!-- Cancel Panel -->
+              <button *ngIf="editObject.isNew" type="button" class='icon-btn' matTooltip="Cancel" (click)="cancelAddItem()">
+                  <i class="expand-layer-btn-icon icon-icon-cancel"></i>
+              </button>
+
+              <!-- Delete -->
+              <button *ngIf="!editObject.isNew" type="button" class='icon-btn warning-icon' matTooltip="Delete" (click)="deleteConfirmDialog($event)">
+                  <i *ngIf="!editObject.isNew" class="expand-layer-btn-icon icon-icon-delete-purge"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="expand-layer-content">
+            <div class="row">
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  <div class="row">
+                    <!-- Left employee Info:meta -->
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                      <!--  Name -->
+                      <div class="input-wrapper row">
+                        <div class="input-tag">*Name</div>
+                        <div class="input-content">
+                          <input name="dashboardName" required [(ngModel)]="detailInfo.name"  #dashboardName='ngModel' />
+                          <div class="input-error-hint" [hidden]="!dashboardName.errors?.required || dashboardName.pristine">Required</div>
+                        </div>
+                      </div>
+
+                      <!-- URL -->
+                      <div class="input-wrapper row">
+                        <div class="input-tag">*URL</div>
+                        <div class="input-content">
+                          <input name="dashbobardUrl" required [(ngModel)]="detailInfo.url" #dashbobardUrl='ngModel' />
+                          <div class="input-error-hint" [hidden]="!dashbobardUrl.errors?.required || dashbobardUrl.pristine">Required</div>
+                        </div>
+                      </div>
+
+
+                      <!-- Ordering -->
+                      <div class="input-wrapper row">
+                        <div class="input-tag">*Ordering</div>
+                        <div class="input-content">
+                          <input name="dashboardOrdering" required number [(ngModel)]="detailInfo.ordering" #dashboardOrdering='ngModel' />
+                          <div class="input-error-hint" [hidden]="!dashboardOrdering.errors?.required || dashboardOrdering.pristine">Required</div>
+                          <div class="input-error-hint" [hidden]="!dashboardOrdering.errors?.number || dashboardOrdering.pristine">Number Only</div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+        </div>
+      </form>
+    </div>
+
+</ng-template>
+

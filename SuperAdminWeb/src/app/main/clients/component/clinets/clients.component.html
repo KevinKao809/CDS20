@@ -1,0 +1,61 @@
+<div class='main-content-title'>
+    <div class="page-title">Clients</div>
+    <button class="cds-btn-primary main-content-button" (click)="addBtnClick($event)">
+        <i class="main-content-btn-icon icon-icon-plus"></i>
+        <span>Add Clients</span>
+    </button>
+</div>
+
+<!-- Table Component -->
+<div class="table-wrapper">
+    <app-expandable-table [slidePaneltemplate]="detailPanel"
+                          [customizedColumnTemplate]="buttomColumn"
+                          [tableSetting] = "tableConfig"
+                          [receivedCommand]="toTableCommamd"
+                          (toParentCommand)="receiveCommand($event)">
+    </app-expandable-table>
+</div>
+
+<!-- buttom column template  -->
+<ng-template #buttomColumn>
+  <div class='table-action-wrapper defaule-hide'>
+      <button appClickStopPropagation btnId='1' class= 'table-cell-btn cds-btn-highlight btn-outine' (click)='triggerExpand(1)'>Detail</button>
+      <button appClickStopPropagation btnId='2' class= 'table-cell-btn cds-btn-highlight btn-outine' (click)='triggerExpand(2)'>Employee</button>
+      <button appClickStopPropagation btnId='3' class= 'table-cell-btn cds-btn-highlight btn-outine' (click)='triggerExpand(3)'>Iot Hub</button>
+      <button appClickStopPropagation btnId='4' class= 'table-cell-btn cds-btn-highlight btn-outine' (click)='triggerExpand(4)'>Dashboard</button>
+      <button appClickStopPropagation btnId='5' class= 'table-cell-btn cds-btn-highlight btn-outine' (click)='triggerExpand(5)'>Subscription</button>
+  </div>
+</ng-template>
+
+<!-- detail panel template -->
+<ng-template #detailPanel>
+
+    <!-- Second Layer -->
+    <div class="second-layer expand-layer" [ngSwitch]="secondLayerBtnID">
+
+        <div *ngSwitchCase = "0">
+            <app-edit-clients (toClientCommand)='receiveCommand($event)' [tableObject]='tableConfig' [editObject]='secondLayerObj' [refCultureList]="refCultureInfo"></app-edit-clients>
+        </div>
+
+        <div *ngSwitchCase = "1">
+            <app-edit-clients (toClientCommand)='receiveCommand($event)' [tableObject]='tableConfig' [editObject]='secondLayerObj' [refCultureList]="refCultureInfo"></app-edit-clients>
+        </div>
+
+        <div *ngSwitchCase = "2">
+            <app-edit-employee (toClientCommand)='receiveCommand($event)' [editObject]='secondLayerObj'></app-edit-employee>
+        </div>
+
+        <div *ngSwitchCase = "3">
+            <app-edit-iothub (toClientCommand)='receiveCommand($event)' [editObject]='secondLayerObj'></app-edit-iothub>
+        </div>
+
+        <div *ngSwitchCase = "4">
+            <app-edit-dashboard (toClientCommand)='receiveCommand($event)' [editObject]='secondLayerObj'></app-edit-dashboard>
+        </div>
+
+        <div *ngSwitchCase = "5">
+            <app-edit-subscription (toClientCommand)='receiveCommand($event)' [editObject]='secondLayerObj'></app-edit-subscription>
+        </div>
+
+    </div>
+</ng-template>

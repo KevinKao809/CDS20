@@ -1,0 +1,14 @@
+{
+  "job": "launch iothub receiver",
+  "entity": "iothub",
+  "entityId": 12,
+  "task": "launch iothub receiver",
+  "taskId": 1512,
+  "Content": {
+    "version": "2.1.3",
+    "iotHubId": 1
+  },
+  "requester": "Admin A-Car",
+  "requesterEmail": "admin@a-car.com",
+  "requestDateTime": "2017-02-19T15:54:26.4208436Z"
+}

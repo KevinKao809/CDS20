@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5653dba8bc58452c84162ffba21521c1" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="CDS20DBModel.AccumulateUsageLog" Width="1.5" PointX="5.25" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.APIServiceRefreshToken" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.APIServiceRole" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.Application" Width="1.5" PointX="5.25" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.Company" Width="1.5" PointX="3" PointY="36.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.CompanyInSubscriptionPlan" Width="1.5" PointX="8.25" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.Dashboard" Width="1.5" PointX="10.5" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.DashboardWidgets" Width="1.5" PointX="12.75" PointY="46.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.DeviceCertificate" Width="1.5" PointX="5.25" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.DeviceType" Width="1.5" PointX="5.25" PointY="49.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.Employee" Width="1.5" PointX="5.25" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.EmployeeInRole" Width="1.5" PointX="7.5" PointY="59.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.Equipment" Width="1.5" PointX="13.5" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.EquipmentClass" Width="1.5" PointX="5.25" PointY="44.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.EquipmentClassMessageCatalog" Width="1.5" PointX="7.5" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.EquipmentEnrollment" Width="1.5" PointX="10.5" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.ErrorMessage" Width="1.5" PointX="2.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.EventInAction" Width="1.5" PointX="7.5" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.EventRuleCatalog" Width="1.5" PointX="10.5" PointY="52.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.EventRuleItem" Width="1.5" PointX="12.75" PointY="59.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.ExternalDashboard" Width="1.5" PointX="5.25" PointY="52.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.Factory" Width="1.5" PointX="8.25" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.IoTDevice" Width="1.5" PointX="7.5" PointY="48.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.IoTDeviceCustomizedConfiguration" Width="1.5" PointX="5.25" PointY="59.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.IoTDeviceSystemConfiguration" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.IoTHub" Width="1.5" PointX="5.25" PointY="63" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.MessageCatalog" Width="1.5" PointX="5.25" PointY="67" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.MessageElement" Width="1.5" PointX="7.5" PointY="67.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.MessageMandatoryElementDef" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.MetaDataDefination" Width="1.5" PointX="5.25" PointY="70.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.MetaDataValue" Width="1.5" PointX="7.5" PointY="71" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.OperationTask" Width="1.5" PointX="5.25" PointY="73.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.PermissionCatalog" Width="1.5" PointX="5.25" PointY="81.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.RefCultureInfo" Width="1.5" PointX="0.75" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.SubscriptionPlan" Width="1.5" PointX="6" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.SuperAdmin" Width="1.5" PointX="8.25" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.SystemConfiguration" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.UserRole" Width="1.5" PointX="5.25" PointY="78.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.UserRolePermission" Width="1.5" PointX="7.5" PointY="78.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.WidgetCatalog" Width="1.5" PointX="10.5" PointY="47.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDS20DBModel.WidgetClass" Width="1.5" PointX="8.25" PointY="45.125" IsExpanded="true" />
+        <AssociationConnector Association="CDS20DBModel.FK_AccumulateUsageLog_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Application_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EventInAction_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Company_CultureInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Company_IoTDeviceCustomizedConfiguration" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_CompanyInSubscriptionPlan_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Dashboard_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_DeviceCertificate_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Employee_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Equipment_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EquipmentClass_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EquipmentEnrollment_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EventRuleCatalog_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_ExternalDashboard_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Factory_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_IoTDevice_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_IoTHub_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_MessageCatalog_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_MetaDataDefination_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_OperationTask_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_UserRole_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_WidgetCatalog_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_CompanyInSubscriptionPlan_SubscriptionPlanID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Dashboard_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Dashboard_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Dashboard_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_DashboardWidgets_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_DashboardWidgets_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_IoTDevice_DeviceCertificateID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_IoTDevice_DeviceTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EmployeeInRole_EmployeeID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EmployeeInRole_UserRoleID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Equipment_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Equipment_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Equipment_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EquipmentClassMessageCatalog_IoTHubDeviceID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EquipmentEnrollment_EquipmentClass" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EquipmentClassMessageCatalog_MessageCatalogID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EquipmentEnrollment_Factory" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EquipmentEnrollment_SuperAdmin" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EventInAction_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EventRuleCatalog_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EventRuleItem_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EventRuleItem_ParentMessageElement" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_EventRuleItem_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_Factory_CultureInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_IoTDevice_FactoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_IoTDevice_IoTHubID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_MessageElement_MessageCatalogID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_WidgetCatalog_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_MetaDataValue_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_UserRolePermission_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_UserRolePermission_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDS20DBModel.FK_WidgetCatalog_ToTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

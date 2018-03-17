@@ -1,0 +1,120 @@
+<div class="iot-hub-receiver-monitor-card-wrapper row">
+
+  <!-- Basic Info -->
+  <div class="basic-info-area-wrapper row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+    <div class="update-status">
+      <div class="update-time">- Updated at {{receivedMessage.timestampSource}}</div>
+      <div class="update-signal-wrapper">
+
+        <ng-container [ngSwitch]='receivedMessage.runningStatus'>
+          <ng-container *ngSwitchCase="'good'">
+            <div class="status-signal">
+              <div class="status-dot dot-active"></div><span>{{receivedMessage.status}}</span>
+            </div>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'error'">
+            <div class="status-signal">
+              <div class="status-dot dot-warning"></div><span>{{receivedMessage.status}}</span>
+            </div>
+          </ng-container>
+
+          <ng-container *NgSwitchDefault>
+            <div class="status-signal">
+              <div class="status-dot"></div><span>{{receivedMessage.status}}</span>
+            </div>
+          </ng-container>
+        </ng-container>
+
+      </div>
+    </div>
+
+    <!-- partition and Label -->
+    <div class="widget-wrapper col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      <div class="widget">
+          <div> Partition: {{receivedMessage.partition}}</div>
+          <div> Label: {{receivedMessage.label}}</div>
+      </div>
+    </div>
+
+    <!-- processId and label -->
+    <div class="widget-wrapper col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <div class="widget">
+          <div> ProcessId: {{receivedMessage.processId}}</div>
+          <div> Machine: {{receivedMessage.machine}}</div>
+        </div>
+    </div>
+
+    <!-- Updated Time & Status -->
+    <!-- <div class="widget-wrapper col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <div class="widget">
+          <div> Updated Time: {{receivedMessage.timestampSource}}</div>
+          <div> status: {{receivedMessage.status}}</div>
+        </div>
+    </div> -->
+  </div>
+
+  <!-- Monitor Widget -->
+  <div class="monitor-widget-area-wrapper row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+    <!-- CPU -->
+    <div class="widget-wrapper col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+
+        <div class="widget">
+          <div class="widget-title">CPU Monitor</div>
+          <div class="widget-content">
+              <ngx-gauge [type]="gaugeType"
+                          [value]= "receivedMessage.cpu"
+                          [label]="gaugeLabel"
+                          [thresholds]="thresholdConfig"
+                          [duration]="500"
+                          [thick]="20"
+                          [size]="180"
+                          [append]="gaugeAppendText">
+              </ngx-gauge>
+          </div>
+        </div>
+    </div>
+
+    <!-- Ram -->
+    <div class="widget-wrapper col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <div class="widget">
+          <div class="widget-title">Ram Available</div>
+          <div class="widget-content">
+            <div class="widget-big-value center-text">{{receivedMessage.ramAvail}}</div>
+          </div>
+        </div>
+    </div>
+
+    <!-- message -->
+    <div class="widget-wrapper col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <div class="widget">
+          <div class="widget-title">Message Monitor</div>
+
+          <div class="widget-content">
+              <div class="widget-sub-title">Consumed Time : {{receivedMessage.messageConsumedDate}}</div>
+
+              <div class="value-two-split-wrapper">
+                <div class="value-two-split-area top">
+                  <div class="widget-middle-value widget-left-value">{{receivedMessage.messageQuotaPerDay}}</div>
+                  <div class="widget-right-title top">Quota Per Day</div>
+                </div>
+
+                <hr class="value-two-split-line">
+
+                <div class="value-two-split-area bottom">
+                    <div class="widget-middle-value widget-left-value">{{receivedMessage.messageConsumed}}</div>
+                    <div class="widget-right-title bottom">Message Consumed</div>
+                </div>
+              </div>
+          </div>
+
+
+
+        </div>
+    </div>
+
+  </div>
+
+</div>

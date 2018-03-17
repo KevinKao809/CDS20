@@ -1,0 +1,201 @@
+<div class="expand-layer-header">
+  <div class="expand-layer-title">Employee</div>
+  <button class="secon-main-btn cds-btn-primary main-content-button" (click)="addBtnClick()">
+      <i class="main-content-btn-icon icon-icon-plus"></i>
+      <span>Add Employee</span>
+  </button>
+</div>
+
+<div class="expand-layer-content">
+  <app-expandable-table [slidePaneltemplate]="detailPanel"
+                        [tableSetting]="tableConfig"
+                        [receivedCommand]="toTableCommamd"
+                        (toParentCommand)="receiveCommand($event)">
+  </app-expandable-table>
+</div>
+
+<ng-template let-name="name"  #detailPanel>
+
+    <div class="expand-layer">
+      <form #editForm="ngForm" (ngSubmit)="confirmEdit(editForm)" novalidate>
+        <div class="expand-layer-header">
+          <div *ngIf="editObject.isNew" class="expand-layer-title">Add Employee</div>
+          <div *ngIf="!editObject.isNew" class="expand-layer-title">Edit Employee</div>
+
+          <div class="expand-layer-btn-group">
+            <!-- undo -->
+            <div class="expand-layer-btn-wrapper" *ngIf="!editObject.isNew" [hidden]="editForm.pristine">
+              <button type="button" class='icon-btn' (click)="undoAllEdit()" matTooltip="Undo All Edit">
+                  <i class="expand-layer-btn-icon icon-icon-reset"></i>
+              </button>
+            </div>
+
+
+            <!-- save employee Info -->
+            <div class="expand-layer-btn-wrapper">
+              <button type="submit" class='icon-btn' [ngClass]="{'enable-icon': editForm.valid}" [disabled]="!editForm.valid || editForm.pristine"  matTooltip="Save">
+                  <i class="expand-layer-btn-icon icon-icon-save"></i>
+              </button>
+            </div>
+
+            <!-- delete or cancel company -->
+            <div class="expand-layer-btn-wrapper">
+
+              <!-- Cancel Panel -->
+              <button *ngIf="editObject.isNew" type="button" class='icon-btn' matTooltip="Cancel" (click)="cancelAddItem()">
+                  <i class="expand-layer-btn-icon icon-icon-cancel"></i>
+              </button>
+
+              <!-- Delete -->
+              <button *ngIf="!editObject.isNew" type="button" class='icon-btn warning-icon' matTooltip="Delete" (click)="deleteConfirmDialog($event)">
+                  <i *ngIf="!editObject.isNew" class="expand-layer-btn-icon icon-icon-delete-purge"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="expand-layer-content">
+            <div class="row">
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-3">
+
+                    <div class="display-image-wrapper">
+                      <div class="upload-image-trigger" (click)="clientImageInput.click()" matTooltip="Upload Image (Accept : png , jpg)">
+                          <i class="icon-icon-upload upload-image-icon"></i>
+                      </div>
+                      <div class="display-image cover-background-image" [ngStyle]="{'background-image' : 'url(' + detailInfo.photoURL + ')'}"></div>
+                      <input class="hidden-style" name="clientImage" type="file" accept="image/*" (change)="imageChange($event, editForm)" #clientImageInput />
+                    </div>
+
+                  <!-- <div class="employee-image"></div> -->
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-9">
+                  <div class="row">
+                    <!-- Left employee Info:meta -->
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                      <!--  Email -->
+                      <div class="input-wrapper row">
+                        <div class="input-tag">*Email</div>
+                        <div class="input-content">
+                          <input name="employeeEmail" [(ngModel)]="detailInfo.email" email #employeeEmail='ngModel' />
+                          <div class="input-error-hint" [hidden]="!employeeEmail.errors?.email || employeeEmail.pristine">Email Format Error</div>
+                        </div>
+                      </div>
+
+                      <!-- Employee Number -->
+                      <div class="input-wrapper row">
+                        <div class="input-tag">*Employee Number</div>
+                        <div class="input-content">
+                          <input name="employeeNumber" required [(ngModel)]="detailInfo.employeeNumber" #employeeNumber='ngModel' />
+                          <div class="input-error-hint" [hidden]="!employeeNumber.errors?.required || employeeNumber.pristine">Required</div>
+                        </div>
+                      </div>
+
+
+                      <!-- First Name -->
+                      <div class="input-wrapper row">
+                        <div class="input-tag">*First Name</div>
+                        <div class="input-content">
+                          <input name="employeeFitstName" required [(ngModel)]="detailInfo.firstName" #employeeFitstName='ngModel' />
+                          <div class="input-error-hint" [hidden]="!employeeFitstName.errors?.required || employeeFitstName.pristine">Required</div>
+                        </div>
+                      </div>
+
+                      <!--  Last Name -->
+                      <div class="input-wrapper row">
+                        <div class="input-tag">*Last Name</div>
+                        <div class="input-content">
+                          <input name="employeeLastName" required [(ngModel)]="detailInfo.lastName" #employeeLastName='ngModel' />
+                          <div class="input-error-hint" [hidden]="!employeeLastName.errors?.required || employeeLastName.pristine">Required</div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <!-- Right company Info: permission -->
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                      <!-- Is Admin -->
+                      <div class="input-wrapper row">
+
+                          <div class="one-row-input-content">
+                              <mat-checkbox name="employeeIsAdmin" class="checkbox-material table-checkbox" disableRipple [checked]="detailInfo.isAdmin" [(ngModel)]="detailInfo.isAdmin">Administrator</mat-checkbox>
+                          </div>
+
+                      </div>
+
+                      <!-- Add employee's setting password -->
+                      <ng-container *ngIf="editObject.isNew">
+
+                        <!-- password -->
+                        <div class="input-wrapper row">
+                            <div class="input-tag">*Password</div>
+                            <div class="input-content">
+                                <input type="password" name="employeeNewPassword" required [(ngModel)]="detailInfo.password" #employeeNewPassword='ngModel' />
+                                <div class="input-error-hint" [hidden]="!employeeNewPassword.errors?.required || employeeNewPassword.pristine">Required</div>
+                            </div>
+                        </div>
+
+                        <!-- Confirm New Password -->
+                        <div class="input-wrapper row">
+                            <div class="input-tag">*Confirm Password</div>
+                            <div class="input-content">
+                                <input type="password" name="employeeConfirmPassword" [(ngModel)]="detailInfo.confirmPassword" [equalTo]="employeeNewPassword" #employeeConfirmPassword='ngModel' />
+                                <div class="input-error-hint" [hidden]="!employeeConfirmPassword.errors?.equalTo || employeeConfirmPassword.pristine">Password Not Match</div>
+                              </div>
+                        </div>
+
+                      </ng-container>
+
+                      <!-- Edit Employee's reset password -->
+                      <ng-container *ngIf="!editObject.isNew">
+                          <!-- Reset password button -->
+                          <div class="input-wrapper row">
+                              <div class="input-tag">
+                                <button type="button" (click)="resetPasswordStatus = !resetPasswordStatus" >Reset Password</button>
+                              </div>
+                          </div>
+
+                          <ng-container *ngIf="resetPasswordStatus">
+
+                            <!-- Reset Password show/hide container -->
+                            <div class="reset-password-wrapper">
+
+                              <!-- password -->
+                              <div class="input-wrapper row">
+                                  <div class="input-tag">*Password</div>
+                                  <div class="input-content">
+                                      <input type="password" name="employeeNewPassword" required [(ngModel)]="detailInfo.password" #employeeNewPassword='ngModel' />
+                                      <div class="input-error-hint" [hidden]="!employeeNewPassword.errors?.required || employeeNewPassword.pristine">Required</div>
+                                  </div>
+                              </div>
+
+                              <!-- Confirm New Password -->
+                              <div class="input-wrapper row">
+                                  <div class="input-tag">*Confirm Password</div>
+                                  <div class="input-content">
+                                      <input type="password" name="employeeConfirmPassword" [(ngModel)]="detailInfo.confirmPassword" [equalTo]="employeeNewPassword" #employeeConfirmPassword='ngModel' />
+                                      <div class="input-error-hint" [hidden]="!employeeConfirmPassword.errors?.equalTo || employeeConfirmPassword.pristine">Password Not Match</div>
+                                    </div>
+                              </div>
+
+                            </div>
+
+                          </ng-container>
+
+
+                      </ng-container>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+        </div>
+      </form>
+    </div>
+
+</ng-template>
+

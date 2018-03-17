@@ -1,0 +1,40 @@
+@import "../../../../../assets/scss/_variable.scss";
+@import "../../../../../assets/scss/_mixin.scss";
+
+$extAppKeyActionBtnWidth: 60px;
+
+.copy-range-and-copy{
+  width: calc(100% - #{$extAppKeyActionBtnWidth});
+  float: left;
+  border: 1px solid;
+  background: #e1e1e1;
+  .copy-range-input{
+    width: 90% !important;
+    float: left;
+    border: none;
+    background: none;
+  }
+  .copy-btn{
+    width: 10%;
+    float: left;
+    height: $input-entry-row;
+    .input-icon{
+      font-size: $secondTitleFontSize;
+      color:$tableInputTagColor;
+    }
+  }
+}
+
+.copy-range-btn-group{
+  width: $extAppKeyActionBtnWidth;
+  float: right;
+
+  button{
+    height: $input-entry-row;
+    float: right;
+    padding: 6px 15px;
+    .range-btn-icon{
+      font-size: $secondTitleFontSize;
+    }
+  }
+}

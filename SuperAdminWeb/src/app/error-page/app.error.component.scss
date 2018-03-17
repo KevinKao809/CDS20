@@ -1,0 +1,81 @@
+@import "../../assets/scss/_variable.scss";
+@import "../../assets/scss/_mixin.scss";
+
+/deep/
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: $primaryColor;
+}
+/deep/
+.mat-checkbox-inner-container{
+  .mat-checkbox-frame {
+    // background-color: #ff0000;
+    border-width: 1px;
+    border: 1px solid $warmGrey;
+  }
+}
+
+.error-page-wrapper{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: auto;
+  background: $heavyColor;
+  .error-page-center{
+    margin-top:95px;
+    width: 430px;
+    position: absolute;
+    margin-left: calc(50% - 215px);
+
+    .error-page-logo-area{
+      width: 100%;
+      .error-page-logo-img{
+        width: 150px;
+        height: 150px;
+        margin-left: calc(50% - 75px);
+        .logo-img{
+          width: $pagelogoSize;
+          height: $pagelogoSize;
+        }
+      }
+      .error-page-logo-text{
+        font-size: $headerTitle;
+        color: $highlightColor;
+        text-align: center;
+        padding: $spacing-15 0 $spacing-40 0;
+      }
+    }
+
+    .error-page-info-area{
+      background: $panelBackgroundColor;
+      @include boxshadow();
+      width: 100%;
+      padding:20px 40px;
+
+      .error-page-describe{
+        color:$greyWhite;
+      }
+
+      .error-action-wrapper{
+
+        .error-btn-wrapper{
+          float:right;
+          .error-button{
+            .error-icon{
+              font-size: $subFontSize;
+            }
+          }
+        }
+
+      }
+
+    }
+
+    .cds-version{
+      color: $warmGrey;
+      padding-top: $spacing-20;
+      text-align: center;
+    }
+
+  }
+}

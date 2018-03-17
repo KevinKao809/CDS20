@@ -1,0 +1,18 @@
+{
+  "job": "provisioning iotdevice",
+  "entity": "iotdevice",
+  "entityId": 12,
+  "task": "update iothub register",
+  "taskId": 1512,
+  "Content": {
+    "oldIothubConnectionString": "xxxxxx",
+    "IothubConnectionString": "xxxxxx",
+    "iothubDeviceId": "ACarDevice002",
+    "authenticationType": "Key",
+    "iothubDeviceKey": "YWI0YjcyMjItY2IyOS00YzAxLTkyNzktMDU1OTNi",
+    "certificateThumbprint": null
+  }, 
+  "requester": "Admin A-Car",
+  "requesterEmail": "admin@a-car.com",
+  "requestDateTime": "2017-02-19T15:54:26.4208436Z"
+}

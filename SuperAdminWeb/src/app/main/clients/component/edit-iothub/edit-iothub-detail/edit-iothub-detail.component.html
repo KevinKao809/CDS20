@@ -1,0 +1,118 @@
+<form #editForm="ngForm" (ngSubmit)="confirmEdit(editForm)" novalidate>
+    <div class="expand-layer-header">
+      <div *ngIf="editObject.isNew" class="expand-layer-title">Add IoT Hub</div>
+      <div *ngIf="!editObject.isNew" class="expand-layer-title">Edit IoT Hub</div>
+      <div class="expand-layer-btn-group">
+
+        <!-- undo -->
+        <div class="expand-layer-btn-wrapper" *ngIf="!editObject.isNew" [hidden]="editForm.pristine">
+          <button type="button" class='icon-btn' (click)="undoAllEdit()" matTooltip="Undo All Edit">
+              <i class="expand-layer-btn-icon icon-icon-reset"></i>
+          </button>
+        </div>
+
+        <!-- save Info -->
+        <div class="expand-layer-btn-wrapper">
+          <button type="submit" class='icon-btn' [ngClass]="{'enable-icon': editForm.valid}" [disabled]="!editForm.valid || editForm.pristine"  matTooltip="Save">
+              <i class="expand-layer-btn-icon icon-icon-save"></i>
+          </button>
+        </div>
+
+        <!-- delete or cancel -->
+        <div class="expand-layer-btn-wrapper">
+
+          <!-- Cancel Panel -->
+          <button *ngIf="editObject.isNew" type="button" class='icon-btn' matTooltip="Cancel" (click)="cancelAddItem()">
+              <i class="expand-layer-btn-icon icon-icon-cancel"></i>
+          </button>
+
+          <!-- Delete -->
+          <button *ngIf="!editObject.isNew" type="button" class='icon-btn warning-icon' matTooltip="Delete" (click)="deleteConfirmDialog($event)">
+              <i *ngIf="!editObject.isNew" class="expand-layer-btn-icon icon-icon-delete-purge"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="expand-layer-content">
+        <div class="row">
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div class="row">
+                <!-- Left Info -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                  <!--  IoT Hub Name -->
+                  <div class="input-wrapper row">
+                    <div class="input-tag">*IoT Hub Name</div>
+                    <div class="input-content">
+                      <input name="ioTHubName" [(ngModel)]="detailInfo.ioTHubName" required #ioTHubName='ngModel' />
+                      <div class="input-error-hint" [hidden]="!ioTHubName.errors?.required || ioTHubName.pristine">Required</div>
+                    </div>
+                  </div>
+
+                  <!-- Description -->
+                  <div class="input-wrapper row">
+                    <div class="input-tag">Description</div>
+                    <div class="input-content">
+                      <input name="iotHubDescription" [(ngModel)]="detailInfo.description"/>
+                    </div>
+                  </div>
+
+                  <!-- ioT Hub EndPoint -->
+                  <div class="input-wrapper row">
+                    <div class="input-tag">*IoTHub EndPoint</div>
+                    <div class="input-content">
+                      <input name="ioTHubEndPoint" required [(ngModel)]="detailInfo.ioTHubEndPoint" #ioTHubEndPoint='ngModel' />
+                      <div class="input-error-hint" [hidden]="!ioTHubEndPoint.errors?.required || ioTHubEndPoint.pristine">Required</div>
+                    </div>
+                  </div>
+
+                  <!--  IoTHub Connection String -->
+                  <div class="input-wrapper row">
+                    <div class="input-tag">*IoTHub ConnectionString</div>
+                    <div class="input-content">
+                      <input name="ioTHubConnectionString" required [(ngModel)]="detailInfo.ioTHubConnectionString" #ioTHubConnectionString='ngModel' />
+                      <div class="input-error-hint" [hidden]="!ioTHubConnectionString.errors?.required || ioTHubConnectionString.pristine">Required</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Right Info -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                  <!--  EventConsumer Group -->
+                  <div class="input-wrapper row">
+                    <div class="input-tag">*EventConsumer Group</div>
+                    <div class="input-content">
+                      <input name="ioTHubEventConsumerGroup" required [(ngModel)]="detailInfo.eventConsumerGroup" #ioTHubEventConsumerGroup='ngModel' />
+                      <div class="input-error-hint" [hidden]="!ioTHubEventConsumerGroup.errors?.required || ioTHubEventConsumerGroup.pristine">Required</div>
+                    </div>
+                  </div>
+
+                  <!--  EventHub Storage ConnectionString -->
+                  <div class="input-wrapper row">
+                    <div class="input-tag">*EventHub Storage ConnectionString</div>
+                    <div class="input-content">
+                      <input name="ioTHubEventHubStorageConnectionString" required [(ngModel)]="detailInfo.eventHubStorageConnectionString" #ioTHubEventHubStorageConnectionString='ngModel' />
+                      <div class="input-error-hint" [hidden]="!ioTHubEventHubStorageConnectionString.errors?.required || ioTHubEventHubStorageConnectionString.pristine">Required</div>
+                    </div>
+                  </div>
+
+                  <!--  uploadContainer -->
+                  <div class="input-wrapper row">
+                    <div class="input-tag">*Upload Container</div>
+                    <div class="input-content">
+                      <input name="ioTHubUploadContainer" required [(ngModel)]="detailInfo.uploadContainer" #ioTHubUploadContainer='ngModel' />
+                      <div class="input-error-hint" [hidden]="!ioTHubUploadContainer.errors?.required || ioTHubUploadContainer.pristine">Required</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+    </div>
+  </form>

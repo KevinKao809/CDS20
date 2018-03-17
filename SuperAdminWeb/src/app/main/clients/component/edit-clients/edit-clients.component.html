@@ -1,0 +1,204 @@
+<form #editForm="ngForm" (ngSubmit)="confirmEdit(editForm)" novalidate>
+    <div class="expand-layer-header">
+        <div *ngIf="editObject.isNew" class="expand-layer-title">Add Client</div>
+        <div *ngIf="!editObject.isNew" class="expand-layer-title">Edit Client</div>
+
+        <div class="expand-layer-btn-group">
+
+          <!-- undo -->
+          <div class="expand-layer-btn-wrapper" *ngIf="!editObject.isNew" [hidden]="editForm.pristine">
+            <button type="button" class='icon-btn' (click)="undoAllEdit()" matTooltip="Undo All Edit">
+                <i class="expand-layer-btn-icon icon-icon-reset"></i>
+            </button>
+          </div>
+
+          <!-- login as SA -->
+          <div class="expand-layer-btn-wrapper" *ngIf="!editObject.isNew">
+            <button type="button" class='icon-btn' matTooltip="Login as SA">
+                <i class="expand-layer-btn-icon icon-icon-log-in-as-SA"></i>
+            </button>
+          </div>
+
+          <!-- save company Info -->
+          <div class="expand-layer-btn-wrapper">
+            <button type="submit" class='icon-btn' [ngClass]="{'enable-icon': editForm.valid}" [disabled]="!editForm.valid || editForm.pristine" matTooltip="Save" >
+                <i class="expand-layer-btn-icon second-layer-btn icon-icon-save"></i>
+            </button>
+          </div>
+
+          <!-- delete or cancel company -->
+
+          <div class="expand-layer-btn-wrapper">
+
+            <!-- Cancel Panel -->
+            <button *ngIf="editObject.isNew" type="button" class='icon-btn' matTooltip="Cancel" (click)="cancelNewPanel()">
+                <i  class="expand-layer-btn-icon second-layer-btn icon-icon-cancel"></i>
+            </button>
+
+            <!-- Delete -->
+            <button *ngIf="!editObject.isNew" type="button" class='icon-btn warning-icon' matTooltip="Delete" (click)="deleteConfirmDialog($event)">
+                <i *ngIf="!editObject.isNew" class="expand-layer-btn-icon second-layer-btn icon-icon-delete-purge"></i>
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="expand-layer-content">
+        <div class="row">
+
+          <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-3">
+
+            <div class="display-image-wrapper">
+              <div class="upload-image-trigger" (click)="clientImageInput.click()" matTooltip="Upload Logo (Accept : png , jpg)">
+                  <i class="icon-icon-upload upload-image-icon"></i>
+              </div>
+              <div class="display-image cover-background-image" [ngStyle]="{'background-image' : 'url(' + detailInfo.logoURL + ')'}"></div>
+              <input class="hidden-style" name="clientImage" type="file" accept="image/*" (change)="imageChange($event, editForm)" #clientImageInput />
+            </div>
+
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-9">
+
+            <div class="row">
+              <!-- Left Info -->
+              <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <!-- Name -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*Name</div>
+                  <div class="input-content">
+                    <input name="clientName" required [(ngModel)]="detailInfo.name" #clientName="ngModel"/>
+                    <div class="input-error-hint" [hidden]="!clientName.errors?.required || clientName.pristine">Required</div>
+                  </div>
+                </div>
+
+                <!-- Shourt Name -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*Short Name</div>
+                  <div class="input-content">
+                    <input name="clientShortName" required [(ngModel)]="detailInfo.shortName" #clientShortName="ngModel" />
+                    <div class="input-error-hint" [hidden]="!clientShortName.errors?.required || clientShortName.pristine">Required</div>
+                  </div>
+                </div>
+
+                <!-- Address -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">Address</div>
+                  <div class="input-content">
+                    <textarea name="clientAddress" class= "middle-height-input" [(ngModel)]="detailInfo.address"></textarea>
+                  </div>
+                </div>
+
+                <!--  Latitude -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*Latitude</div>
+                  <div class="input-content">
+                    <input required number name="clientLatitude" [(ngModel)]="detailInfo.latitude" #clientLatitude="ngModel" />
+                    <div class="input-error-hint" [hidden]="!clientLatitude.errors?.number || clientLatitude.pristine">Latitude Format error</div>
+                    <div class="input-error-hint" [hidden]="!clientLatitude.errors?.required || clientLatitude.pristine">Required</div>
+                  </div>
+                </div>
+
+                <!--  Longitude -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*Longitude</div>
+                  <div class="input-content">
+                    <input required number name="clientLongitude" [(ngModel)]="detailInfo.longitude" #clientLongitude="ngModel" />
+                    <div class="input-error-hint" [hidden]="!clientLongitude.errors?.number || clientLongitude.pristine">Latitude Format error</div>
+                    <div class="input-error-hint" [hidden]="!clientLongitude.errors?.required || clientLongitude.pristine">Required</div>
+                  </div>
+                </div>
+
+                <!--  Contact -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">Contact</div>
+                  <div class="input-content">
+                    <input name="clientContact" [(ngModel)]="detailInfo.contact" />
+                  </div>
+                </div>
+
+                <!--  Phone -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">Phone</div>
+                  <div class="input-content">
+                    <input name="clientPhone" [(ngModel)]="detailInfo.phone" />
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*Email</div>
+                  <div class="input-content">
+                    <input email name="clientEmail" type="email" [(ngModel)]="detailInfo.email" #clientEmail="ngModel" />
+                    <div class="input-error-hint" [hidden]="!clientEmail.errors?.email || clientEmail.pristine">Wrong Email Format</div>
+                  </div>
+                </div>
+
+
+              </div>
+
+              <!-- Right company Info -->
+              <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                  <!-- Website -->
+                <div class="input-wrapper row">
+                    <div class="input-tag">Website</div>
+                    <div class="input-content">
+                      <input name="clientWebsite" [(ngModel)]="detailInfo.website" />
+                    </div>
+                </div>
+
+                <!-- Allow domain -->
+                <div class="input-wrapper row">
+                    <div class="input-tag">Allow domain</div>
+                    <div class="input-content">
+                      <input name="clientAllowDomain" [(ngModel)]="detailInfo.allowDomain" />
+                    </div>
+                </div>
+
+                <!-- Culture Info -->
+                <div class="input-wrapper row">
+                    <div class="input-tag">Culture Info</div>
+                    <div class="input-content">
+                      <select (change)="cultureChange($event.target.value)"  name="clientCultureInfo" [(ngModel)]="detailInfo.cultureInfoId">
+                        <option *ngFor="let cultureInfo of refCultureList" value="{{cultureInfo.CultureCode}}">{{cultureInfo.Name}}</option>
+                      </select>
+                    </div>
+                </div>
+
+                <!-- Ext. App. Key -->
+                <div class="input-wrapper row">
+                    <div class="input-tag">App Authentication Key</div>
+                    <div class="input-content">
+
+                      <div class="copy-range-and-copy">
+                          <input readonly class="copy-range-input" name="clientExtAppKey" type="text" [(ngModel)]="detailInfo.extAppKey" #inputExtAppkey>
+                          <button *ngIf="detailInfo.extAppKey !== '' && detailInfo.extAppKey !== null"  type="button" class="copy-btn icon-btn" [ngxClipboard]="inputExtAppkey" (cbOnSuccess)="copySuccess()">
+                              <i *ngIf="!extKeyisCopy" class="icon-icon-copy input-icon" matTooltip="Copy"></i>
+                              <i *ngIf="extKeyisCopy" class="icon-icon-confirm input-icon" matTooltip="Copy Success"></i>
+                          </button>
+                      </div>
+
+                      <div class="copy-range-btn-group">
+                        <button *ngIf="detailInfo.extAppKey === null || detailInfo.extAppKey === '' || !detailInfo.extAppKey" type="button" class="cds-btn-primary" (click)="createExternalKey(editForm)" matTooltip="Create Key">
+                            <i class="icon-icon-key range-btn-icon"></i>
+                        </button>
+                        <button *ngIf="detailInfo.extAppKey !== null && detailInfo.extAppKey !== ''" type="button" class="cds-btn-warning" (click)="clearExternalKey(editForm)"  matTooltip="Delete Key">
+                            <i class="icon-icon-delete-purge range-btn-icon"></i>
+                        </button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
+
+
+
+
+
+

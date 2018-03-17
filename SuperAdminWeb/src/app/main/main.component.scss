@@ -1,0 +1,225 @@
+@import "../../assets/scss/_variable.scss";
+@import "../../assets/scss/_mixin.scss";
+
+
+/deep/ .cdk-overlay-container{
+  .mat-menu-panel {
+    background:$panelBackgroundColor !important;
+    color:$warmGrey;
+    position: relative;
+    top:$heraderHeight;
+    .mat-menu-item{
+      color:$warmGrey;
+      outline: none;
+      font-size: $mainFontSize;
+      height: 45px;
+      line-height: 45px;
+      @include transition();
+      &:hover{
+        background: $charcoalGrey;
+        color:$highlightColor;
+      }
+    }
+  }
+}
+
+.user-img-wrapper{
+  float: left;
+  .user-img{
+    width: 104px;
+    height: 104px;
+    background: #ccc;
+  }
+}
+.user-btn-wrapper{
+  float: left;
+}
+
+.main-header{
+  position: relative;
+  z-index: 1;
+  height: $heraderHeight;
+  @include boxshadow();
+  padding: 0 $spacing-40 0 0;
+  position: fixed;
+  background: $heavyColor;
+  width: 100%;
+
+  .header-cds-logo-wrapper{
+    float: left;
+    padding-top: ($heraderHeight - $headerLogoSize) / 2 ;
+    padding-left: $spacing-20;
+    .header-cds-logo{
+      height: $headerLogoSize;
+    }
+  }
+
+  .header-cds-title{
+    line-height: $heraderHeight;
+    float: left;
+    padding-left: $spacing-15;
+    color:$highlightColor;
+    font-size: $headerTitle;
+  }
+
+  .header-user-info{
+    height: 100%;
+    float: right;
+    .header-login-info{
+      height: 100%;
+      float: left;
+      color: $greyWhite;
+      .header-login-info-displaytext{
+        height: 50%;
+        text-align: right;
+        &.top{
+          padding-top: calc(#{$heraderHeight/2} - 20px);
+        }
+      }
+    }
+    .header-avatar{
+      float: left;
+      height: 100%;
+      padding-left: $spacing-15;
+      .avatar-icon{
+        @include round-element(45px, #ccc);
+        position: relative;
+        top: ($heraderHeight/2 - 45/2);
+        cursor: pointer;
+      }
+    }
+  }
+
+}
+
+.content-wrapper{
+  height: calc(100% - #{$heraderHeight});
+  width: 100%;
+  position: absolute;
+  top:$heraderHeight;
+  .main-nav-bar{
+    position: relative;
+    height: 100%;
+    width: $navBarWidthLarge;
+    float:left;
+    background: $panelBackgroundColor;
+       .nav-wrapper{
+        list-style-type: none;
+        padding: 0px;
+
+        .nav-item{
+          line-height: 35px;
+          color: $warmGrey;
+          overflow: hidden;
+          white-space: nowrap;
+          .nav-item-text {
+            vertical-align: middle;
+          }
+          .nav-item-icon{
+            vertical-align: middle;
+            z-index: 2px;
+            display: inline-block;
+            text-align: center;
+            font-size: $navIconSize;
+            width: $navBarWidthSmall;
+          }
+          cursor: pointer;
+          &.active{
+            background: $charcoalGrey;
+            color: $highlightColor;
+          }
+
+          .expand-li{
+            &.active{
+              background: $charcoalGrey;
+              color: $highlightColor;
+            }
+          }
+
+          @include transition();
+          overflow: hidden;
+
+          &:hover{
+            &:not(.active){
+              color: $whiteColor;
+            }
+          }
+          .sub-nav-wrapper{
+            background: $slate;
+            border-style: none;
+            .sub-nav-item{
+              font-size: $subFontSize;
+              list-style-type: none;
+              color:$greyWhite;
+
+              @include transition();
+              &.active{
+                color: $highlightColor;
+              }
+              &:hover{
+                &:not(.active){
+                  color: $whiteColor;
+                }
+              }
+            }
+          }
+        }
+      }
+    .main-nav-bar-footer{
+      position: absolute;
+      bottom: 0px;
+      font-size: $navBarCopyRight;
+      color: $whiteColor;
+      padding: 0 0 $spacing-15 $spacing-15;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  .main-content{
+    position: relative;
+    float:left;
+    background: $mainContentBackgroundColor;
+    width: calc(100% - #{$navBarWidthLarge});
+    height: 100%;
+    padding:$spacing-40;
+    overflow-y: auto;
+
+    /deep/
+    .main-content-button{
+      float: right;
+      .main-content-btn-icon{
+        font-size: $mainFontSize;
+        position: relative;
+        top: 2px;
+      }
+    }
+
+    /deep/
+    .main-content-title{
+      padding-bottom: $spacing-30;
+      .page-title{
+        font-size: $pageTitleFontSize;
+        color:$pageMainTitleColor;
+        float: left;
+      }
+      // .main-content-button{
+      //   float: right;
+      //   .main-content-btn-icon{
+      //     font-size: $mainFontSize;
+      //     position: relative;
+      //     top: 2px;
+      //   }
+      // }
+    }
+
+    /deep/
+    .table-wrapper{
+      padding-top:28px;
+    }
+
+
+  }
+}
+
+

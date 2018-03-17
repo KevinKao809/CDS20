@@ -1,0 +1,112 @@
+<div class='main-content-title'>
+  <div class="page-title">Widget-Company</div>
+  <button class="cds-btn-primary main-content-button" (click)="addBtnClick()">
+      <i class="main-content-btn-icon icon-icon-plus"></i>
+      <span>Add Company Widget </span>
+  </button>
+</div>
+
+
+<div class="table-wrapper">
+  <!-- ExpandTable Component -->
+<app-expandable-table [slidePaneltemplate]="detailPanel"
+                        [tableSetting] = "tableConfig"
+                        [receivedCommand]="toTableCommamd"
+                        (toParentCommand)="receiveCommand($event)">
+  </app-expandable-table>
+</div>
+
+<!-- Expand Panel -->
+<ng-template let-name="name"  #detailPanel>
+<div class="second-layer expand-layer">
+  <form #editForm="ngForm" (ngSubmit)="confirmEdit(editForm)" novalidate>
+
+    <div class="expand-layer-header">
+      <div class="expand-layer-title" *ngIf="toTableCommamd.isNew">Add Company Widget</div>
+      <div class="expand-layer-title" *ngIf="!toTableCommamd.isNew">Edit Company Widget</div>
+
+      <div class="expand-layer-btn-group">
+        <!-- undo -->
+        <div class="expand-layer-btn-wrapper" *ngIf="!toTableCommamd.isNew" [hidden]="editForm.pristine"  matTooltip="Undo All Edit">
+          <button type="button" class='icon-btn' (click)="undoAllEdit()">
+              <i class="expand-layer-btn-icon icon-icon-reset"></i>
+          </button>
+        </div>
+
+        <!-- save employee Info -->
+        <div class="expand-layer-btn-wrapper">
+          <button type="submit" class='icon-btn' [ngClass]="{'enable-icon': editForm.valid}" [disabled]="!editForm.valid || editForm.pristine"  matTooltip="Save">
+              <i class="expand-layer-btn-icon second-layer-btn icon-icon-save"></i>
+          </button>
+        </div>
+
+        <!-- delete or cancel company -->
+        <div class="expand-layer-btn-wrapper">
+
+          <!-- Cancel Panel -->
+          <button *ngIf="toTableCommamd.isNew" type="button" class='icon-btn' matTooltip="Cancel" (click)="cancelAddItem()">
+              <i  class="expand-layer-btn-icon second-layer-btn icon-icon-cancel"></i>
+          </button>
+
+          <!-- Delete -->
+          <button *ngIf="!toTableCommamd.isNew" type="button" class='icon-btn warning-icon' matTooltip="Delete" (click)="deleteConfirmDialog($event)">
+              <i  class="expand-layer-btn-icon second-layer-btn icon-icon-delete-purge"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="expand-layer-content">
+
+
+      <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-3">
+              <div class="display-image"></div>
+            </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-9">
+          <div class="row">
+            <!-- Name -->
+            <div class="input-wrapper row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div class="input-tag">*Name</div>
+              <div class="input-content">
+                <input name="widgetCompanyName" required [(ngModel)]="detailInfo.name" #widgetCompanyName="ngModel"/>
+                <div class="input-error-hint" [hidden]="!widgetCompanyName.errors?.required || widgetCompanyName.pristine">Required</div>
+              </div>
+             </div>
+             <!-- Key -->
+             <div class="input-wrapper row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+               <div class="input-tag">*Key</div>
+               <div class="input-content">
+                 <input name="widgetCompanykey" required number [(ngModel)]="detailInfo.key" #widgetCompanykey="ngModel"/>
+                 <div class="input-error-hint" [hidden]="!widgetCompanykey.errors?.required || widgetCompanykey.pristine">Required</div>
+                </div>
+             </div>
+             <!-- PhotoURL -->
+             <div class="input-wrapper row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+               <div class="input-tag">PhotoURL</div>
+               <div class="input-content">
+                 <input name="widgetCompanyPhotoURL" [(ngModel)]="detailInfo.photoURL" />
+               </div>
+             </div>
+               <!-- AllowMultipleAppearOnBoard -->
+               <div class="input-wrapper row  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" >
+                <div class="input-tag">*Allow Multiple Appear OnBoard</div>
+                <div class="input-content">
+                  <select name="widgetCompanyAllowMultipleAppearOnBoard" [(ngModel)]="detailInfo.allowMultipleAppearOnBoard">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                  </select>
+                </div>
+              </div>
+              <!-- <ng-container *ngIf="toTableCommamd.isNew">
+
+              </ng-container> -->
+           </div>
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+</div>
+</ng-template>

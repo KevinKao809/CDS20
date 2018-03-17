@@ -1,0 +1,6 @@
+﻿@mixin mixin-transition($attr: all, $seconds: .3s) {
+    -webkit-transition: $attr $seconds ease-out;
+    -moz-transition: $attr $seconds ease-out;
+    -o-transition: $attr $seconds ease-out;
+    transition: $attr $seconds ease-out;
+}

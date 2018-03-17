@@ -1,0 +1,151 @@
+<div class='main-content-title'>
+  <div class="page-title">Device Configuration</div>
+  <button class="cds-btn-primary main-content-button" (click)="addBtnClick()">
+      <i class="main-content-btn-icon icon-icon-plus"></i>
+      <span>Add Device Configuration</span>
+  </button>
+</div>
+
+
+<div class="table-wrapper">
+  <!-- ExpandTable Component -->
+<app-expandable-table [slidePaneltemplate]="detailPanel"
+                        [tableSetting] = "tableConfig"
+                        [receivedCommand]="toTableCommamd"
+                        (toParentCommand)="receiveCommand($event)">
+  </app-expandable-table>
+</div>
+
+<!-- Expand Panel -->
+<ng-template let-name="name"  #detailPanel>
+<div class="second-layer expand-layer">
+  <form #editForm="ngForm" (ngSubmit)="confirmEdit(editForm)" novalidate>
+
+    <div class="expand-layer-header">
+      <div class="expand-layer-title" *ngIf="toTableCommamd.isNew">Add Device Configuration</div>
+      <div class="expand-layer-title" *ngIf="!toTableCommamd.isNew">Edit Device Configuration</div>
+
+      <div class="expand-layer-btn-group">
+        <!-- undo -->
+        <div class="expand-layer-btn-wrapper" *ngIf="!toTableCommamd.isNew" [hidden]="editForm.pristine"  matTooltip="Undo All Edit">
+          <button type="button" class='icon-btn' (click)="undoAllEdit()">
+            <i class="expand-layer-btn-icon icon-icon-reset"></i>
+          </button>
+        </div>
+
+        <!-- save employee Info -->
+        <div class="expand-layer-btn-wrapper">
+          <button type="submit" class='icon-btn' [ngClass]="{'enable-icon': editForm.valid}" [disabled]="!editForm.valid || editForm.pristine"  matTooltip="Save">
+              <i class="expand-layer-btn-icon second-layer-btn icon-icon-save"></i>
+          </button>
+        </div>
+
+        <!-- delete or cancel company -->
+        <div class="expand-layer-btn-wrapper">
+
+          <!-- Cancel Panel -->
+          <button *ngIf="toTableCommamd.isNew" type="button" class='icon-btn' matTooltip="Cancel" (click)="cancelAddItem()">
+              <i  class="expand-layer-btn-icon second-layer-btn icon-icon-cancel"></i>
+          </button>
+
+          <!-- Delete -->
+          <button *ngIf="!toTableCommamd.isNew" type="button" class='icon-btn warning-icon' matTooltip="Delete" (click)="deleteConfirmDialog($event)">
+              <i  class="expand-layer-btn-icon second-layer-btn icon-icon-delete-purge"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="expand-layer-content">
+
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div class="row">
+            <!-- Name -->
+            <div class="input-wrapper row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div class="input-tag">*Name</div>
+              <div class="input-content">
+                <input name="dataConfigurationName" required [(ngModel)]="detailInfo.name" #dataConfigurationName="ngModel"/>
+                <div class="input-error-hint" [hidden]="!dataConfigurationName.errors?.required || dataConfigurationName.pristine">Required</div>
+              </div>
+             </div>
+             <!-- DataType -->
+             <!-- <div class="input-wrapper row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+               <div class="input-tag">*Data Type</div>
+               <div class="input-content">
+                 <input name="dataType" required [(ngModel)]="detailInfo.dataType" #dataType="ngModel"/>
+                 <div class="input-error-hint" [hidden]="!dataType.errors?.required || dataType.pristine">Required</div>
+               </div>
+             </div> -->
+             <!-- DataType -->
+             <div class="input-wrapper row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+               <div class="input-tag">*Data Type</div>
+               <div class="input-content">
+                 <select name="dataType" (change)="dataTypeChange($event.target.value)" [(ngModel)]="detailInfo.dataType" #dataType="ngModel">
+                    <option value="bool">bool</option>
+                    <option value="string">string</option>
+                    <option value="numeric">numeric</option>
+                    <option value="datetime">datetime</option>
+                  </select>
+                 <div class="input-error-hint" [hidden]="!dataType.errors?.required || dataType.pristine">Required</div>
+               </div>
+             </div>
+             <!-- Description -->
+             <div class="input-wrapper row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+               <div class="input-tag">Description</div>
+               <div class="input-content">
+                 <input name="deviceConfigurationDescription" [(ngModel)]="detailInfo.description" />
+               </div>
+             </div>
+              <!-- Default Value -->
+             <div class="input-wrapper row col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+               <div class="input-tag">Default Value</div>
+
+               <div class="input-content">
+
+                <ng-container [ngSwitch]="detailInfo.dataType">
+
+                  <ng-container *ngSwitchCase = '"string"'>
+                    <input name="deviceConfigurationDefaultValue" placeholder="Please input string" [(ngModel)]="detailInfo.defaultValue" />
+                  </ng-container>
+
+                  <ng-container *ngSwitchCase = '"bool"'>
+                    <input name="deviceConfigurationDefaultValue"  [(ngModel)]="detailInfo.defaultValue" />
+                  </ng-container>
+
+                  <ng-container *ngSwitchCase = '"numeric"'>
+                      <input type="number" name="deviceConfigurationDefaultValue" placeholder="Please input number" [(ngModel)]="detailInfo.defaultValue" />
+                  </ng-container>
+
+                  <ng-container *ngSwitchCase = '"datetime"'>
+                    <input name="deviceConfigurationDefaultValue" [owlDateTime]="DateTime" [owlDateTimeTrigger]="DateTime" placeholder="Select Date" [(ngModel)]="detailInfo.defaultValue" #deviceConfigurationDefaultValue="ngModel" />
+                    <owl-date-time #DateTime></owl-date-time>
+                  </ng-container>
+
+                </ng-container>
+
+                <!-- <div *ngIf="detailInfo.dataType == 'string' ">
+                  <input name="deviceConfigurationDefaultValue" placeholder="Please input string" [(ngModel)]="detailInfo.defaultValue" />
+                  </div>
+                <div *ngIf="detailInfo.dataType == 'bool' ">
+                  <input name="deviceConfigurationDefaultValue"  [(ngModel)]="detailInfo.defaultValue" />
+                </div>
+                <div *ngIf="detailInfo.dataType == 'numeric' ">
+                  <input type="number" name="deviceConfigurationDefaultValue" placeholder="Please input number" [(ngModel)]="detailInfo.defaultValue" />
+                </div>
+                <div *ngIf="detailInfo.dataType == 'datetime' ">
+                  <input name="deviceConfigurationDefaultValue" [owlDateTime]="DateTime" [owlDateTimeTrigger]="DateTime" placeholder="Select Date" [(ngModel)]="detailInfo.defaultValue" #deviceConfigurationDefaultValue="ngModel" />
+                  <owl-date-time #DateTime></owl-date-time>
+                </div> -->
+
+               </div>
+             </div>
+           </div>
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+</div>
+</ng-template>

@@ -1,0 +1,153 @@
+<ng-container *ngIf="popUpCropImageDialog">
+    <app-crop-image [inputImageEvent]= "imageChangeEvent" (cropConfirm)="cropFinish($event)"> </app-crop-image>
+</ng-container>
+
+<!-- Header Bar -->
+<header class="main-header">
+
+  <div class="header-cds-logo-wrapper">
+    <img class="header-cds-logo" src="../../assets/images/CDS_Logo.svg" alt="logo">
+  </div>
+
+  <div class="header-cds-title">
+    Connected Device Studio
+  </div>
+
+  <div class='header-user-info'>
+
+    <div class="header-login-info">
+      <div class="header-login-info-displaytext top">{{headerInfo.userName}}</div>
+      <div class="header-login-info-displaytext bottom">{{headerInfo.userMail}}</div>
+    </div>
+
+    <div class="header-avatar">
+
+      <mat-menu #userInfoMenu="matMenu">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 user-img-wrapper">
+          <div class="user-img"></div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 user-btn-wrapper">
+          <div>SuperAdmin</div>
+          <button mat-menu-item> Profile </button>
+          <button mat-menu-item (click)="logout()"> Logout </button>
+        </div>
+      </mat-menu>
+
+      <div [matMenuTriggerFor]="userInfoMenu">
+        <div class="avatar-icon"></div>
+      </div>
+    </div>
+
+  </div>
+
+</header>
+
+<div class="content-wrapper">
+  <!-- Main SideBar -->
+  <div class="main-nav-bar" [@sideBarCollapse]='sideBarExpand'>
+    <div class="scrollbar">
+      <ul class="nav-wrapper">
+
+        <!-- Menu -->
+        <li class="nav-item" (click)='navBarCollpaseSwitch()'>
+          <i class="icon-icon-menu nav-item-icon"></i>
+          <span class="nav-item-text">Menu</span>
+        </li>
+
+        <!-- Clients -->
+        <li class="nav-item" routerLink="/main/clients" routerLinkActive="active">
+          <i class="icon-icon-clients nav-item-icon"></i>
+          <span class="nav-item-text">Clients</span>
+        </li>
+
+        <!-- Subscription Plan -->
+        <li class="nav-item" routerLink="/main/subscriptionPlan" routerLinkActive="active">
+          <i class="icon-icon-subscription nav-item-icon"></i>
+          <span class="nav-item-text">Subscription Plan</span>
+        </li>
+
+        <!-- Equipment -->
+        <li class="nav-item">
+          <div class="expand-li" (click)='expandNavItemOrNot("Equipment")' [ngClass]="{active: EquipmentChildEnrollment.classList.contains('active') ||
+                                                                                               EquipmentChildEmailTemplate.classList.contains('active')}">
+              <i class="icon-icon-equipment nav-item-icon"></i>
+              <span class="nav-item-text">Equipment</span>
+          </div>
+
+          <ul class="sub-nav-wrapper" [@itemDetail]='navBarExpandItem["Equipment"] == true ? "expanded" : "collapsed"'>
+            <li #EquipmentChildEnrollment class="sub-nav-item" routerLink="/main/enrollment" routerLinkActive="active">Enrollment</li>
+            <li #EquipmentChildEmailTemplate class="sub-nav-item">Email Template</li>
+          </ul>
+        </li>
+
+        <!-- Setup -->
+        <li class="nav-item">
+          <div class="expand-li" (click)='expandNavItemOrNot("Setup")'
+              [ngClass]="{active: setupChildDeviceClass.classList.contains('active') ||
+                                  setupChildDeviceConfiguration.classList.contains('active') ||
+                                  setupChildMandatoryMessage.classList.contains('active') ||
+                                  setupChildWidgetClassComapny.classList.contains('active') ||
+                                  setupChildWidgetClassFactory.classList.contains('active') ||
+                                  setupChildWidgetClassEquipment.classList.contains('active') ||
+                                  setupChildPermission.classList.contains('active')}" >
+                <i class="icon-icon-setup nav-item-icon"></i>
+                <span class="nav-item-text">Setup</span>
+          </div>
+          <ul class="sub-nav-wrapper" [@itemDetail]='navBarExpandItem["Setup"] == true ? "expanded" : "collapsed"'>
+            <li #setupChildDeviceClass class="sub-nav-item" routerLink="/main/deviceClass" routerLinkActive="active">Device Class</li>
+            <li #setupChildDeviceConfiguration class="sub-nav-item" routerLink="/main/device-configuration" routerLinkActive="active">Device Configuration</li>
+            <li #setupChildMandatoryMessage class="sub-nav-item" routerLink="/main/mandatory-message" routerLinkActive="active">Mandatory Message</li>
+            <li #setupChildWidgetClassComapny class="sub-nav-item" routerLink="/main/widgetCompany" routerLinkActive="active">Widget - Company</li>
+            <li #setupChildWidgetClassFactory class="sub-nav-item" routerLink="/main/widgetFactory" routerLinkActive="active">Widget - Factory</li>
+            <li #setupChildWidgetClassEquipment class="sub-nav-item" routerLink="/main/widgetEquipment" routerLinkActive="active">Widget - Equipment</li>
+            <li #setupChildPermission class="sub-nav-item" routerLink="/main/permission" routerLinkActive="active">Permission</li>
+          </ul>
+        </li>
+
+        <!-- Monitor -->
+        <li class="nav-item">
+          <div class="expand-li" (click)='expandNavItemOrNot("Monitor")'
+              [ngClass]="{active: monitorChildBackendTask.classList.contains('active') ||
+                                  monitorChildRunnigOpsProcess.classList.contains('active') ||
+                                  monitorChildUsageLog.classList.contains('active')}">
+                <i class="icon-icon-monitor nav-item-icon"></i>
+                <span class="nav-item-text">Monitor</span>
+          </div>
+          <ul class="sub-nav-wrapper" [@itemDetail]='navBarExpandItem["Monitor"] == true ? "expanded" : "collapsed"'>
+            <li #monitorChildBackendTask class="sub-nav-item">Backend Task</li>
+            <li #monitorChildRunnigOpsProcess class="sub-nav-item">Runnig Ops Process</li>
+            <li #monitorChildUsageLog class="sub-nav-item">Usage Log</li>
+          </ul>
+        </li>
+
+        <!-- System Setting -->
+        <li class="nav-item">
+          <div class="expand-li" (click)='expandNavItemOrNot("SystemSetting")'
+              [ngClass]="{active: systemSettingChildConfiguration.classList.contains('active') ||
+                                  systemSettingChildRedisCache.classList.contains('active')}">
+                <i class="icon-icon-system-setting nav-item-icon"></i>
+                <span class="nav-item-text">System Setting</span>
+          </div>
+          <ul class="sub-nav-wrapper" [@itemDetail]='navBarExpandItem["SystemSetting"] == true ? "expanded" : "collapsed"'>
+            <li #systemSettingChildConfiguration class="sub-nav-item" routerLink="/main/systemConfiguration" routerLinkActive="active">System Configuration</li>
+            <li #systemSettingChildRedisCache class="sub-nav-item" routerLink="/main/redisCache" routerLinkActive="active">Redis Cache</li>
+          </ul>
+        </li>
+
+        <!-- Super Admin -->
+        <li class="nav-item" routerLink="/main/superAdmin" routerLinkActive="active">
+          <i class="icon-icon-superadmin-profile nav-item-icon"></i>
+          <span class="nav-item-text">Super Admin</span>
+        </li>
+      </ul>
+    </div>
+    <div class="main-nav-bar-footer" [@sideBarElementShowOrHide]='sideBarElementDisplay'>2018 © Microsoft Azure</div>
+  </div>
+  <!-- Main Content -->
+  <div class="main-content" [@mainContentWidth]='mainContentWidth'>
+
+    <app-popup-window [popUpWindowObj]="popWindowDisplayObj"></app-popup-window>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

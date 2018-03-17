@@ -1,0 +1,112 @@
+@import "../../assets/scss/_variable.scss";
+@import "../../assets/scss/_mixin.scss";
+
+/deep/
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: $primaryColor;
+}
+/deep/
+.mat-checkbox-inner-container{
+  .mat-checkbox-frame {
+    border-width: 1px;
+    border: 1px solid $warmGrey;
+  }
+}
+
+.login-page-wrapper{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: auto;
+  background: $heavyColor;
+  .login-page-center{
+    margin-top:95px;
+    width: 430px;
+    position: absolute;
+    margin-left: calc(50% - 215px);
+
+    .login-page-logo-area{
+      width: 100%;
+      .login-page-logo-img{
+        width: 150px;
+        height: 150px;
+        margin-left: calc(50% - 75px);
+        .logo-img{
+          width: $pagelogoSize;
+          height: $pagelogoSize;
+        }
+      }
+      .login-page-logo-text{
+        font-size: $headerTitle;
+        color: $highlightColor;
+        text-align: center;
+        padding: $spacing-15 0 $spacing-40 0;
+      }
+    }
+
+    .shake{
+      @include shakeAnimation();
+    }
+
+    .login-page-input-area {
+      background: $panelBackgroundColor;
+      @include boxshadow();
+      width: 100%;
+      padding:20px 40px;
+      .login-web-name{
+        text-align: right;
+        color:$warmGrey;
+        padding-bottom:$spacing-10;
+      }
+      .input-wrapper{
+        padding-bottom:$spacing-20;
+
+        .login-icon{
+          color:$warmGrey;
+          position: relative;
+          top: 3px;
+          margin-right: $spacing-10;
+          font-size: 20px;
+        }
+        .login-input{
+          height: 30px;
+          padding-left: $spacing-10;
+          width: calc(100% - 34px);
+        }
+      }
+      .error-wrapper{
+        padding-left: $spacing-10;
+        margin: 0 $spacing-15 $spacing-15 $spacing-15;
+
+        .error-text{
+          color: $confirmDialogTextColor;
+
+        }
+      }
+
+      .login-action-wrapper{
+        .checkbox-material{
+          color:$greyWhite;
+        }
+        .login-btn-wrapper{
+          float:right;
+          .login-button{
+            .login-icon{
+              font-size: $subFontSize;
+            }
+          }
+        }
+
+      }
+    }
+
+
+    .cds-version{
+      color: $warmGrey;
+      padding-top: $spacing-20;
+      text-align: center;
+    }
+
+  }
+}

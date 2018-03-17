@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7a116e3c6ffb4213a3d430276168dbc7" Name="Diagram1">
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.AccumulateUsageLog" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.APIServiceRefreshToken" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.APIServiceRole" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.Application" Width="1.5" PointX="5.25" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.Company" Width="1.5" PointX="3" PointY="38.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.CompanyInSubscriptionPlan" Width="1.5" PointX="8.25" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.Dashboard" Width="1.5" PointX="7.5" PointY="46.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.DashboardWidgets" Width="1.5" PointX="12.75" PointY="52" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.DeviceCertificate" Width="1.5" PointX="5.25" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.DeviceCommandCatalog" Width="1.5" PointX="5.25" PointY="41.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.DeviceType" Width="1.5" PointX="5.25" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.Employee" Width="1.5" PointX="5.25" PointY="44.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.EmployeeInRole" Width="1.5" PointX="7.5" PointY="63.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.Equipment" Width="1.5" PointX="13.5" PointY="43.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.EquipmentClass" Width="1.5" PointX="5.25" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.EquipmentClassMessageCatalog" Width="1.5" PointX="7.5" PointY="60.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.EquipmentEnrollment" Width="1.5" PointX="10.5" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.ErrorMessage" Width="1.5" PointX="2.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.EventInAction" Width="1.5" PointX="7.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.EventRuleCatalog" Width="1.5" PointX="10.5" PointY="55.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.EventRuleItem" Width="1.5" PointX="12.75" PointY="63.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.ExternalDashboard" Width="1.5" PointX="5.25" PointY="56.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.Factory" Width="1.5" PointX="8.25" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.IoTDevice" Width="1.5" PointX="7.5" PointY="51.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.IoTDeviceCommand" Width="1.5" PointX="12.75" PointY="49.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.IoTDeviceCustomizedConfiguration" Width="1.5" PointX="5.25" PointY="63.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.IoTDeviceSystemConfiguration" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.IoTHub" Width="1.5" PointX="5.25" PointY="66.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.MessageCatalog" Width="1.5" PointX="5.25" PointY="71" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.MessageElement" Width="1.5" PointX="7.5" PointY="71" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.MessageMandatoryElementDef" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.MetaDataDefination" Width="1.5" PointX="5.25" PointY="74.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.MetaDataValue" Width="1.5" PointX="7.5" PointY="74.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.OperationTask" Width="1.5" PointX="5.25" PointY="77.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.PermissionCatalog" Width="1.5" PointX="5.25" PointY="85.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.RefCultureInfo" Width="1.5" PointX="0.75" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.SubscriptionPlan" Width="1.5" PointX="6" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.SuperAdmin" Width="1.5" PointX="8.25" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.SystemConfiguration" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.UserRole" Width="1.5" PointX="5.25" PointY="82.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.UserRolePermission" Width="1.5" PointX="7.5" PointY="82.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.WidgetCatalog" Width="1.5" PointX="10.5" PointY="50.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CDStudioEntitiesModel.WidgetClass" Width="1.5" PointX="8.25" PointY="67.25" IsExpanded="true" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_AccumulateUsageLog_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Application_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EventInAction_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Company_CultureInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Company_IoTDeviceCustomizedConfiguration" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_CompanyInSubscriptionPlan_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Dashboard_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_DeviceCertificate_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_DeviceCommandCatalog_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Employee_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Equipment_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EquipmentClass_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EquipmentEnrollment_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EventRuleCatalog_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_ExternalDashboard_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Factory_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_IoTDevice_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_IoTHub_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_MessageCatalog_CompanyID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_MetaDataDefination_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_OperationTask_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_UserRole_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_WidgetCatalog_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_CompanyInSubscriptionPlan_SubscriptionPlanID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Dashboard_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Dashboard_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Dashboard_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_DashboardWidgets_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_DashboardWidgets_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_IoTDevice_DeviceCertificateID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_IoTDeviceCommand_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_IoTDevice_DeviceTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EmployeeInRole_EmployeeID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EmployeeInRole_UserRoleID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Equipment_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Equipment_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Equipment_ToTable_3" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EquipmentClassMessageCatalog_IoTHubDeviceID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EquipmentEnrollment_EquipmentClass" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EquipmentClassMessageCatalog_MessageCatalogID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EquipmentEnrollment_Factory" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EquipmentEnrollment_SuperAdmin" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EventInAction_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EventRuleCatalog_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EventRuleItem_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EventRuleItem_ParentMessageElement" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_EventRuleItem_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_Factory_CultureInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_IoTDevice_FactoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_IoTDevice_IoTHubID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_IoTDeviceCommand_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_MessageElement_MessageCatalogID" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_WidgetCatalog_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_MetaDataValue_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_UserRolePermission_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_UserRolePermission_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CDStudioEntitiesModel.FK_WidgetCatalog_ToTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

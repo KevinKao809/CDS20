@@ -1,0 +1,32 @@
+<!-- title -->
+<div class='main-content-title'>
+  <div class="page-title">Equipment Enrollment</div>
+</div>
+
+<!-- Step Indicator layout -->
+<div class='step-indicator-wrapper'>
+  <button (click)="currentStep = '0' "> Step1. Select Company</button>
+  <button (click)="currentStep = '1'"> Step2. Select Equipment Class</button>
+  <button (click)="currentStep = '2'"> Step3. Create Equipment ID</button>
+</div>
+
+<div class='step-container' [ngSwitch]="currentStep">
+  <ng-container *ngSwitchCase="0" [ngTemplateOutlet]="step1"></ng-container>
+  <ng-container *ngSwitchCase="1" [ngTemplateOutlet]="step2"></ng-container>
+  <ng-container *ngSwitchCase="2" [ngTemplateOutlet]="step3"></ng-container>
+  <ng-container *ngSwitchDefault [ngTemplateOutlet]="step1"></ng-container>
+</div>
+
+
+<ng-template #step1>
+    step1
+</ng-template>
+
+
+<ng-template #step2>
+    step2
+</ng-template>
+
+<ng-template #step3>
+    step3
+</ng-template>

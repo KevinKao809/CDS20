@@ -1,0 +1,196 @@
+<div class='main-content-title'>
+  <div class="page-title">Subscription Plan</div>
+  <button class="cds-btn-primary main-content-button" (click)="addBtnClick()">
+    <i class="main-content-btn-icon icon-icon-plus"></i>
+    <span>Subscription Plan</span>
+  </button>
+</div>
+
+<div class="table-wrapper">
+  <!-- ExpandTable Component -->
+  <app-expandable-table [slidePaneltemplate]="detailPanel"
+                        [tableSetting]="tableConfig"
+                        [receivedCommand]="toTableCommamd"
+                        (toParentCommand)="receiveCommand($event)">
+  </app-expandable-table>
+</div>
+<!-- Expand Panel -->
+<ng-template let-name="name" #detailPanel>
+  <div class="second-layer expand-layer">
+    <form #editForm="ngForm" (ngSubmit)="confirmEdit(editForm)" novalidate>
+      <div class="expand-layer-header">
+        <div class="expand-layer-title" *ngIf="toTableCommamd.isNew">Add Subscription Plan</div>
+        <div class="expand-layer-title" *ngIf="!toTableCommamd.isNew">Edit Subscription Plan</div>
+        <div class="expand-layer-btn-group">
+          <!-- undo -->
+          <div class="expand-layer-btn-wrapper" *ngIf="!toTableCommamd.isNew" [hidden]="editForm.pristine">
+            <button type="button" class='icon-btn' (click)="undoAllEdit()" matTooltip="Undo All Edit">
+              <i class="expand-layer-btn-icon icon-icon-reset"></i>
+            </button>
+          </div>
+          <!-- save employee Info -->
+          <div class="expand-layer-btn-wrapper">
+            <button type="submit" class='icon-btn' [ngClass]="{'enable-icon': editForm.valid}" [disabled]="!editForm.valid || editForm.pristine"
+              matTooltip="Save">
+              <i class="expand-layer-btn-icon second-layer-btn icon-icon-save"></i>
+            </button>
+          </div>
+          <!-- delete or cancel company -->
+          <div class="expand-layer-btn-wrapper">
+            <!-- Cancel Panel -->
+            <button *ngIf="toTableCommamd.isNew" type="button" class='icon-btn' matTooltip="Cancel" (click)="cancelAddItem()">
+              <i  class="expand-layer-btn-icon second-layer-btn icon-icon-cancel"></i>
+            </button>
+            <!-- Delete -->
+            <button *ngIf="!toTableCommamd.isNew" type="button" class='icon-btn warning-icon' matTooltip="Delete" (click)="deleteConfirmDialog($event)">
+              <i  class="expand-layer-btn-icon second-layer-btn icon-icon-delete-purge"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="expand-layer-content">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="row">
+              <!-- Left Info -->
+              <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-6">
+                <!-- SubscriptionPlan Name -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*Name</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanName" required [(ngModel)]="detailInfo.name" #subscriptionPlanName="ngModel" />
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanName.errors?.required || subscriptionPlanName.pristine">Required</div>
+                  </div>
+                </div>
+                <!-- SubscriptionPlan Description -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">Description</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDescription" [(ngModel)]="detailInfo.description" #subscriptionPlanDescription="ngModel"
+                    />
+
+                  </div>
+                </div>
+                <!-- DefaultRatePer1KMessageIngestion -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*DefaultRatePer1KMessageIngestion</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDefaultRatePer1KMessageIngestion" number required [(ngModel)]="detailInfo.defaultRatePer1KMessageIngestion"
+                      #subscriptionPlanDefaultRatePer1KMessageIngestion="ngModel" />
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultRatePer1KMessageIngestion.errors?.required ||subscriptionPlanDefaultRatePer1KMessageIngestion.pristine">Required</div>
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultRatePer1KMessageIngestion.errors?.number ||subscriptionPlanDefaultRatePer1KMessageIngestion.pristine">Number Only</div>
+                  </div>
+                </div>
+                <!-- DefaultRatePer1KMessageHotStore -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*DefaultRatePer1KMessageHotStore</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDefaultRatePer1KMessageHotStore" number required [(ngModel)]="detailInfo.defaultRatePer1KMessageHotStore"
+                      #subscriptionPlanDefaultRatePer1KMessageHotStore="ngModel" />
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultRatePer1KMessageHotStore.errors?.required ||subscriptionPlanDefaultRatePer1KMessageHotStore.pristine">Required</div>
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultRatePer1KMessageHotStore.errors?.number ||subscriptionPlanDefaultRatePer1KMessageHotStore.pristine">Number Only</div>
+                  </div>
+                </div>
+                <!-- DefaultRatePer1KMessageColdStore -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*DefaultRatePer1KMessageColdStore</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDefaultRatePer1KMessageColdStore" number required [(ngModel)]="detailInfo.defaultRatePer1KMessageColdStore"
+                      #subscriptionPlanDefaultRatePer1KMessageColdStore="ngModel" />
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultRatePer1KMessageColdStore.errors?.required ||subscriptionPlanDefaultRatePer1KMessageColdStore.pristine">Required</div>
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultRatePer1KMessageColdStore.errors?.number ||subscriptionPlanDefaultRatePer1KMessageColdStore.pristine">Number Only</div>
+                  </div>
+                </div>
+                <!-- DefaultPlanDays -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*DefaultPlanDays</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDefaultPlanDays" number required [(ngModel)]="detailInfo.defaultPlanDays" #subscriptionPlanDefaultPlanDays="ngModel"
+                    />
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultPlanDays.errors?.required ||subscriptionPlanDefaultPlanDays.pristine">Required</div>
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultPlanDays.errors?.number ||subscriptionPlanDefaultPlanDays.pristine">Number Only</div>
+                  </div>
+                </div>
+                <div class="input-wrapper row">
+                  <div class="input-tag">*DefaultMaxMessageQuotaPerDay</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDefaultMaxMessageQuotaPerDay" number required [(ngModel)]="detailInfo.defaultMaxMessageQuotaPerDay"
+                      #subscriptionPlanDefaultMaxMessageQuotaPerDay="ngModel" />
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultMaxMessageQuotaPerDay.errors?.required ||subscriptionPlanDefaultMaxMessageQuotaPerDay.pristine">Required</div>
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultMaxMessageQuotaPerDay.errors?.number ||subscriptionPlanDefaultMaxMessageQuotaPerDay.pristine">Number Only</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Info -->
+              <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <!-- DefaultMaxMessageQuotaPerDay -->
+
+                <!-- DefaultStoreHotMessage -->
+                <div class="input-wrapper row" >
+
+                  <div class="one-row-input-content">
+                    <mat-checkbox name="subscriptionPlanDefaultStoreHotMessage" class="checkbox-material table-checkbox" disableRipple [checked]="detailInfo.defaultStoreHotMessage" [(ngModel)]="detailInfo.defaultStoreHotMessage">Default Store Hot Message</mat-checkbox>
+                  </div>
+
+                </div>
+                <!--DefaultStoreColdMessage-->
+                <div class="input-wrapper row" >
+
+                  <div class="one-row-input-content">
+                      <mat-checkbox name="subscriptionPlanDefaultStoreColdMessage" class="checkbox-material table-checkbox" disableRipple [checked]="detailInfo.defaultStoreColdMessage" [(ngModel)]="detailInfo.defaultStoreColdMessage">Default Store Cold Message</mat-checkbox>
+                  </div>
+
+                </div>
+                <!-- DefaultCosmosDBConnectionString -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*DefaultCosmosDBConnectionString</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDefaultCosmosDBConnectionString" required [(ngModel)]="detailInfo.defaultCosmosDBConnectionString"
+                      #subscriptionPlanDefaultCosmosDBConnectionString="ngModel" />
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultCosmosDBConnectionString.errors?.required ||subscriptionPlanDefaultCosmosDBConnectionString.pristine">Required</div>
+                  </div>
+                </div>
+                <!-- DefaultCollectionTTL -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*DefaultCollectionTTL</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDefaultCollectionTTL" number required [(ngModel)]="detailInfo.defaultCollectionTTL" #subscriptionPlanDefaultCollectionTTL="ngModel"
+                    />
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultCollectionTTL.errors?.required ||subscriptionPlanDefaultCollectionTTL.pristine">Required</div>
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultCollectionTTL.errors?.number ||subscriptionPlanDefaultCollectionTTL.pristine">Number Only</div>
+                  </div>
+                </div>
+                <!-- DefaultCollectionReservedUnits -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">*DefaultCollectionReservedUnits</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDefaultCollectionReservedUnits" number required [(ngModel)]="detailInfo.defaultCollectionReservedUnits"
+                      #subscriptionPlanDefaultCollectionReservedUnits="ngModel" />
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultCollectionReservedUnits.errors?.required ||subscriptionPlanDefaultCollectionReservedUnits.pristine">Required</div>
+                    <div class="input-error-hint" [hidden]="!subscriptionPlanDefaultCollectionReservedUnits.errors?.number ||subscriptionPlanDefaultCollectionReservedUnits.pristine">Number Only</div>
+                  </div>
+                </div>
+                <!-- DefaultIoTHubConnectionString -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">DefaultIoTHubConnectionString</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDefaultIoTHubConnectionString" [(ngModel)]="detailInfo.defaultIoTHubConnectionString"
+                      #subscriptionPlanDefaultIoTHubConnectionString="ngModel" />
+                  </div>
+                </div>
+                <!-- DefaultStorageConnectionString -->
+                <div class="input-wrapper row">
+                  <div class="input-tag">DefaultStorageConnectionString</div>
+                  <div class="input-content">
+                    <input name="subscriptionPlanDefaultStorageConnectionString" [(ngModel)]="detailInfo.defaultStorageConnectionString"
+                      #subscriptionPlanDefaultStorageConnectionString="ngModel" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

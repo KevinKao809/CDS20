@@ -1,0 +1,14 @@
+{
+  "job": "provisioning",
+  "entity": "company",
+  "entityId": 50,
+  "task": "delete iot hub consumer group",
+  "taskId": 1509,
+  "iotHubConnectionString": "123",
+  "Content": {
+    "consumerGroupName": "CDS20_C18"
+  },
+  "requester": "Kevin Kao",
+  "requesterEmail": "kevika@microsoft.com",
+  "requestDateTime": "2017-02-19T15:46:02.2935009Z"
+}

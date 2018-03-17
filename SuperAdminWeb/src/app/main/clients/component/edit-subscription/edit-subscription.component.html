@@ -1,0 +1,262 @@
+
+<div class="expand-layer-header">
+    <div class="expand-layer-title">Client's Subscription</div>
+    <button class="secon-main-btn cds-btn-primary main-content-button" (click)="addBtnClick()" [hidden]="hasActiveSubscription">
+        <i class="main-content-btn-icon icon-icon-plus"></i>
+        <i class="icon-log-in-as-client's-admin"></i>
+        <span>Add Subscription</span>
+    </button>
+  </div>
+
+  <div class="expand-layer-content">
+    <app-expandable-table [slidePaneltemplate]="detailPanel"
+                          [tableSetting]="tableConfig"
+                          [receivedCommand]="toTableCommamd"
+                          (toParentCommand)="receiveCommand($event)">
+    </app-expandable-table>
+  </div>
+
+  <ng-template let-name="name"  #detailPanel>
+
+      <div class="expand-layer">
+        <form #editForm="ngForm" (ngSubmit)="confirmEdit(editForm)" novalidate>
+          <div class="expand-layer-header">
+            <div class="expand-layer-title" *ngIf="!editObject.isNew">Edit Subscriotion</div>
+            <div class="expand-layer-title" *ngIf="editObject.isNew">New Subscriotion</div>
+            <div class="expand-layer-btn-group">
+
+              <ng-container *ngIf="currentPlanExpired">
+                <div>Expired</div>
+              </ng-container>
+
+              <ng-container *ngIf="!currentPlanExpired">
+                <!-- undo -->
+                <div class="expand-layer-btn-wrapper" *ngIf="!editObject.isNew" [hidden]="editForm.pristine">
+                  <button type="button" class='icon-btn' (click)="undoAllEdit()" matTooltip="Undo All Edit">
+                      <i class="expand-layer-btn-icon icon-icon-reset"></i>
+                  </button>
+                </div>
+
+                <!-- save Info -->
+                <div class="expand-layer-btn-wrapper">
+                  <button type="submit" class='icon-btn' [ngClass]="{'enable-icon': editForm.valid}" [disabled]="!editForm.valid || editForm.pristine"  matTooltip="Save">
+                      <i class="expand-layer-btn-icon icon-icon-save"></i>
+                  </button>
+                </div>
+
+                <!-- delete or cancel -->
+                <div class="expand-layer-btn-wrapper">
+
+                  <!-- Cancel Panel -->
+                  <button *ngIf="editObject.isNew" type="button" class='icon-btn' matTooltip="Cancel" (click)="cancelAddItem()">
+                      <i class="expand-layer-btn-icon icon-icon-cancel"></i>
+                  </button>
+
+                  <!-- End Subscription -->
+                  <button *ngIf="!editObject.isNew" type="button" class='icon-btn warning-icon' matTooltip="Cancel Subscription" (click)="deleteConfirmDialog($event)">
+                      <i *ngIf="!editObject.isNew" class="expand-layer-btn-icon icon-icon-subscription"></i>
+                  </button>
+                </div>
+                </ng-container>
+
+
+            </div>
+          </div>
+
+          <div class="expand-layer-content">
+              <div class="row">
+
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="row">
+
+                      <ng-container *ngIf='editObject.isNew'>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                          <select (change)="selectSubscription($event.target.value)">
+                            <option value="" selected disabled class="hidden-style">Chose Client's Subscription Plan</option>
+                            <option *ngFor="let plan of allSubscriptionPlan" value="{{plan.id}}">
+                              Plan: {{plan.name}} / Period:{{plan.period}} days / Description: {{plan.description}}
+                            </option>
+                          </select>
+                        </div>
+                      </ng-container>
+
+                      <ng-container *ngIf='selectSubscriptionPlanId!== null || !editObject.isNew'>
+
+                        <!-- Left Info -->
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                          <!--  Name -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">*Subscription Name</div>
+                            <div class="input-content">
+                              <input name="subscriptionName" required [disabled]="!editObject.isNew || currentPlanExpired" [(ngModel)]="detailInfo.subscriptionName" #subscriptionName = "ngModel"/>
+                              <div class="input-error-hint" [hidden]="!subscriptionName.errors?.required || subscriptionName.pristine">Required</div>
+                            </div>
+                          </div>
+
+                          <!-- startDate and expiredDate -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">*Subscription Period</div>
+                            <div class="input-content date-period-input-wrapper">
+                              <input [disabled]="!editObject.isNew" required class="date-period-input" name="subscriptionStartDate"  [owlDateTime]="startDate" [owlDateTimeTrigger]="startDate" placeholder="Select Date" [(ngModel)]="detailInfo.startDate" #subscriptionStartDate="ngModel" />
+                              <owl-date-time #startDate></owl-date-time>
+                              <div class="input-error-hint" [hidden]="!subscriptionStartDate.errors?.required || subscriptionStartDate.pristine">Required</div>
+                              <div class="date-period-dash">-</div>
+
+                              <input [disabled]="currentPlanExpired" required class="date-period-input" name="subscriptionExpiredDate" [owlDateTime]="expireDate" [owlDateTimeTrigger]="expireDate" placeholder="Select Date" [(ngModel)]="detailInfo.expiredDate" #subscriptionExpiredDate = "ngModel">
+                              <owl-date-time #expireDate></owl-date-time>
+                              <div class="input-error-hint" [hidden]="!subscriptionExpiredDate.errors?.required || subscriptionExpiredDate.pristine">Required</div>
+                            </div>
+                          </div>
+
+                          <!-- ratePer1KMessageColdStore -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">Rate Per 1KMessage Cold Store</div>
+                            <div class="input-content">
+                              <input [disabled]="currentPlanExpired" name="subscriptionRatePer1KMessageColdStore" number [(ngModel)]="detailInfo.ratePer1KMessageColdStore" #subscriptionRatePer1KMessageColdStore="ngModel" />
+                              <div class="input-error-hint" [hidden]="!subscriptionRatePer1KMessageColdStore.errors?.number || subscriptionRatePer1KMessageColdStore.pristine">Number Only</div>
+                            </div>
+                          </div>
+
+                          <!-- ratePer1KMessageHotStore -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">Rate Per 1KMessage Hot Store</div>
+                            <div class="input-content">
+                              <input [disabled]="currentPlanExpired" name="subscriptionRatePer1KMessageHotStore" number [(ngModel)]="detailInfo.ratePer1KMessageHotStore" #subscriptionRatePer1KMessageHotStore="ngModel" />
+                              <div class="input-error-hint" [hidden]="!subscriptionRatePer1KMessageHotStore.errors?.number || subscriptionRatePer1KMessageHotStore.pristine">Number Only</div>
+                            </div>
+                          </div>
+
+                          <!-- ratePer1KMessageIngestion -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">Rate Per 1KMessage Ingestion</div>
+                            <div class="input-content">
+                              <input [disabled]="currentPlanExpired" name="subscriptionRatePer1KMessageIngestion" number [(ngModel)]="detailInfo.ratePer1KMessageIngestion" #subscriptionRatePer1KMessageIngestion="ngModel" />
+                              <div class="input-error-hint" [hidden]="!subscriptionRatePer1KMessageIngestion.errors?.number || subscriptionRatePer1KMessageIngestion.pristine">Number Only</div>
+                            </div>
+                          </div>
+
+                          <!-- maxMessageQuotaPerDay -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">*Max Message Quota Per Day</div>
+                            <div class="input-content">
+                              <input [disabled]="currentPlanExpired" name="subscriptionMaxMessageQuotaPerDay" required number [(ngModel)]="detailInfo.maxMessageQuotaPerDay" #subscriptionMaxMessageQuotaPerDay="ngModel" />
+                              <div class="input-error-hint" [hidden]="!subscriptionMaxMessageQuotaPerDay.errors?.required || subscriptionMaxMessageQuotaPerDay.pristine">Required</div>
+                              <div class="input-error-hint" [hidden]="!subscriptionMaxMessageQuotaPerDay.errors?.number || subscriptionMaxMessageQuotaPerDay.pristine">Number Only</div>
+                            </div>
+                          </div>
+
+                          <!-- storeColdMessage -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">Store Cold Message</div>
+                            <div class="input-content">
+                              <select [disabled]="currentPlanExpired" name="subscriptionStoreColdMessage" [(ngModel)]="detailInfo.storeColdMessage">
+                                <option value="true">true</option>
+                                <option value="false">false</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <!-- storeHotMessage -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">Store Hot Message</div>
+                            <div class="input-content">
+                              <select [disabled]="currentPlanExpired" name="subscriptionStoreHotMessage" [(ngModel)]="detailInfo.storeHotMessage">
+                                <option value="true">true</option>
+                                <option value="false">false</option>
+                              </select>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <!-- Right Info -->
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                          <!-- cosmosDBName -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">*Cosmos DB Name</div>
+                            <div class="input-content">
+                              <input [disabled]="currentPlanExpired" name="subscriptionCosmosDBName" required [(ngModel)]="detailInfo.cosmosDBName" #subscriptionCosmosDBName="ngModel" />
+                              <div class="input-error-hint" [hidden]="!subscriptionCosmosDBName.errors?.required || subscriptionCosmosDBName.pristine">Required</div>
+                            </div>
+                          </div>
+
+                          <!-- cosmosDBColletionId -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">*CosmosDB Colletion Id</div>
+                            <div class="input-content">
+                              <input [disabled]="currentPlanExpired" name="subscriptionCosmosDBColletionId" required [(ngModel)]="detailInfo.cosmosDBColletionId" #subscriptionCosmosDBColletionId="ngModel" />
+                              <div class="input-error-hint" [hidden]="!subscriptionCosmosDBColletionId.errors?.required || subscriptionCosmosDBColletionId.pristine">Required</div>
+                            </div>
+                          </div>
+
+                          <!-- cosmosDBConnectionString -->
+                          <div class="input-wrapper row">
+                              <div class="input-tag">*CosmosDB Connection String</div>
+                              <div class="input-content">
+                                <input [disabled]="currentPlanExpired" name="subscriptionCosmosDBConnectionString" required [(ngModel)]="detailInfo.cosmosDBConnectionString" #subscriptionCosmosDBConnectionString="ngModel" />
+                                <div class="input-error-hint" [hidden]="!subscriptionCosmosDBConnectionString.errors?.required || subscriptionCosmosDBConnectionString.pristine">Required</div>
+                              </div>
+                            </div>
+
+                            <!-- ioTHubConsumerGroup -->
+                            <div class="input-wrapper row">
+                              <div class="input-tag">*IoTHub Consumer Group</div>
+                              <div class="input-content">
+                                <input [disabled]="currentPlanExpired" name="subscriptionIoTHubConsumerGroup" required [(ngModel)]="detailInfo.ioTHubConsumerGroup" #subscriptionIoTHubConsumerGroup="ngModel" />
+                                <div class="input-error-hint" [hidden]="!subscriptionIoTHubConsumerGroup.errors?.required || subscriptionIoTHubConsumerGroup.pristine">Required</div>
+                              </div>
+                            </div>
+
+                            <!-- ioTHubConnectionString -->
+                            <div class="input-wrapper row">
+                              <div class="input-tag">*IoTHub Connection String</div>
+                              <div class="input-content">
+                                <input [disabled]="currentPlanExpired" name="subscriptionIoTHubConnectionString" required [(ngModel)]="detailInfo.ioTHubConnectionString" #subscriptionIoTHubConnectionString="ngModel" />
+                                <div class="input-error-hint" [hidden]="!subscriptionIoTHubConnectionString.errors?.required || subscriptionIoTHubConnectionString.pristine">Required</div>
+                              </div>
+                            </div>
+
+                          <!-- CosmosDB Collection TTL -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">CosmosDB Collection TTL</div>
+                            <div class="input-content">
+                              <input [disabled]="currentPlanExpired" name="subscriptionCosmosDBCollectionTTL" number [(ngModel)]="detailInfo.cosmosDBCollectionTTL" #subscriptionCosmosDBCollectionTTL="ngModel" />
+                              <div class="input-error-hint" [hidden]="!subscriptionCosmosDBCollectionTTL.errors?.number || subscriptionCosmosDBCollectionTTL.pristine">Number Only</div>
+                            </div>
+                          </div>
+
+                          <!-- cosmosDBCollectionReservedUnits -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">CosmosDB Collection Reserved Units</div>
+                            <div class="input-content">
+                              <input [disabled]="currentPlanExpired" name="subscriptionCosmosDBCollectionReservedUnits" number [(ngModel)]="detailInfo.cosmosDBCollectionReservedUnits" #subscriptionCosmosDBCollectionReservedUnits="ngModel" />
+                              <div class="input-error-hint" [hidden]="!subscriptionCosmosDBCollectionReservedUnits.errors?.number || subscriptionCosmosDBCollectionReservedUnits.pristine">Number Only</div>
+                            </div>
+                          </div>
+
+                          <!-- Storage Connection String -->
+                          <div class="input-wrapper row">
+                            <div class="input-tag">Storage Connection String</div>
+                            <div class="input-content">
+                              <input [disabled]="currentPlanExpired" name="subscriptionStorageConnectionString" [(ngModel)]="detailInfo.storageConnectionString" />
+                            </div>
+                          </div>
+
+                        </div>
+
+                      </ng-container>
+
+
+
+                    </div>
+                  </div>
+
+                </div>
+          </div>
+        </form>
+      </div>
+
+  </ng-template>
+

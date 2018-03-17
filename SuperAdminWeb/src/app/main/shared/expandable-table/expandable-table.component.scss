@@ -1,0 +1,450 @@
+@import "../../../../assets/scss/_variable.scss";
+@import "../../../../assets/scss/_mixin.scss";
+
+@import '../../../../assets/lib/scss/bootstrap/_functions.scss';
+@import '../../../../assets/lib/scss/bootstrap/_variables.scss';
+@import '../../../../assets/lib/scss/bootstrap/_mixins.scss';
+@import '../../../../assets/lib/scss/bootstrap/mixins/_breakpoints.scss';
+
+// @import '~bootstrap/scss/_functions';
+// @import '~bootstrap/scss/_variables';
+// @import '~bootstrap/scss/mixins/_breakpoints';
+
+// @import '~@swimlane/ngx-datatable/release/index.css';
+// @import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+
+/deep/
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: $primaryColor;
+}
+/deep/
+.mat-checkbox-inner-container{
+  .mat-checkbox-frame {
+    // background-color: #ff0000;
+    border-width: 1px;
+    border: 1px solid $warmGrey;
+  }
+}
+
+/deep/
+.mat-radio-button.mat-accent.mat-radio-checked {
+  .mat-radio-outer-circle {
+    border-color: $primaryColor;
+  }
+}
+
+/deep/
+.mat-radio-button.mat-accent{
+  .mat-radio-inner-circle {
+    background-color: $primaryColor;
+  }
+}
+
+
+.table-action-header{
+  display: inline-block;
+  width: 100%;
+  margin-bottom: $spacing-20;
+  color: $tableRowTextColor;
+  .entry-display-wrapper{
+    float: left;
+    select{
+      color: $tableRowTextColor;
+      height: $input-entry-row;
+    }
+  }
+
+  .table-search-wrapper{
+    float: right;
+    .table-search-bar{
+      height: $input-entry-row;
+      padding-left: $spacing-5;
+    }
+  }
+}
+
+/deep/
+.ngx-datatable {
+  color:$tableRowTextColor;
+  width:100%;
+  .sortable .sort-btn:after {
+  font-family: data-table;
+  // content: "c";
+  }
+  .sortable .sort-btn.datatable-icon-down:after {
+    content: "f";
+    }
+  .sortable .sort-btn.datatable-icon-up:after {
+    content: "e";
+    }
+
+  .datatable-header{
+    width:100%;
+    background: $tableHeaderColor;
+    color:$whiteColor;
+    .datatable-header-cell{
+      line-height: $table-header-height;
+      padding-left: $spacing-10;
+    }
+  }
+
+  .datatable-body{
+    width:100%;
+    @include boxshadow(0px, 5px, 20px, -10px, rgba(0,0,0,0.75));
+    .datatable-scroll{
+      width:100% !important;
+    }
+
+    .datatable-body-row{
+      cursor: pointer;
+      width:100% !important;
+      line-height: $table-cell-height;
+      &.datatable-row-even{
+        background: $tableRowColorEven;
+      }
+
+      &.datatable-row-odd{
+        background: $tableRowColorOdd;
+      }
+
+      .datatable-body-cell{
+        padding-left: $spacing-15;
+        line-height: $table-cell-height;
+        .table-action-wrapper{
+          &.defaule-hide{
+            display: none;
+          }
+          .table-cell-btn {
+            height: $table-cell-button-height;
+            line-height: ($table-cell-height - $table-cell-button-height)/2;
+          }
+        }
+
+        .inline-edit-display{
+          display: inline-block;
+        }
+
+        .inline-edit-input{
+          height: $input-entry-row;
+          width: 100%;
+          padding-left: $spacing-5;
+          display: none;
+        }
+      }
+
+      &.active{
+        color:$highlightColor;
+        .datatable-body-cell{
+          .table-action-wrapper{
+            display: block;
+          }
+          .inline-edit-display{
+            display: none;
+          }
+          .inline-edit-input{
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    .datatable-row-detail{
+      background: $secondLayerBackgroundColor;
+      .expand-layer{
+        padding: $spacing-20 $spacing-15;
+        @include boxshadow(0px,11px,8px,-10px, #CCC,inset);
+
+        .expand-layer-btn-group{
+          .icon-btn{
+            color:$subIconButtonColor;
+            border-radius: 3px;
+            width: $subIconButtonsize;
+            height: $subIconButtonsize;
+            line-height: initial;
+            @include transition();
+            &:disabled{
+              color:$subIconButtonDisabledColor;
+            }
+            &:hover:enabled{
+              color:$whiteColor;
+              background: $subIconButtonHoverColor;
+            }
+            &.warning-icon{
+              &:hover:enabled{
+                background: $warningColor;
+              }
+            }
+          }
+        }
+
+        .expand-layer-header{
+          border-bottom: 1px solid $heavyColor;
+          line-height: 75px;
+          height: 75px;
+          .expand-layer-title{
+            font-size: $secondTitleFontSize;
+            float: left;
+            color:$panelBackgroundColor;
+          }
+
+          .secon-main-btn{
+            float: right;
+            line-height: initial;
+            position: relative;
+            top: $spacing-15;
+          }
+
+          .expand-layer-btn-group{
+            float: right;
+            .expand-layer-btn-wrapper{
+              float: left;
+              margin-left: $spacing-20;
+              cursor: pointer;
+              .expand-layer-btn-icon{
+                font-size: $pageTitleFontSize;
+              }
+            }
+          }
+        }
+
+        .expand-layer-content{
+          @include media-breakpoint-down(md) {
+            padding: $spacing-20 $spacing-40;
+          }
+
+          @include media-breakpoint-only(lg) {
+            padding: $spacing-20 $spacing-50;
+          }
+
+          @media (min-width: 1200px) and (max-width: 1620px) {
+            padding: $spacing-20 $spacing-25;
+          }
+
+          @media (min-width: 1621px) {
+            padding: $spacing-20 $spacing-110;
+          }
+          // @include media-breakpoint-up(xl) {
+          //   padding: $spacing-20 $spacing-110;
+          // }
+
+          .display-image-wrapper{
+            margin: auto;
+            display: block;
+            width: 200px;
+            height:200px;
+
+              .upload-image-trigger{
+                width: 200px;
+                height:200px;
+                background-color: $uploadImageOverlay;
+                position: absolute;
+                opacity: 0;
+                text-align: center;
+                cursor: pointer;
+                @include transition();
+                .upload-image-icon{
+                  line-height: 200px;
+                  color: $whiteColor;
+                  text-align: center;
+                  font-size: $largeIconSize;
+                  @include textshadow();
+                }
+              }
+
+              .display-image{
+                width: 200px;
+                height:200px;
+                background-color: $whiteColor;
+              }
+
+              &:hover{
+                .upload-image-trigger{
+                  opacity: 1;
+                }
+              }
+          }
+
+
+          .input-wrapper{
+            margin: 0px 0 $spacing-20 0;
+            position: relative;
+
+            .input-error-hint{
+              height: 34px;
+              line-height: 34px;
+              background: $inputErrorHintColor;
+              @include boxshadow();
+              padding: 0 $spacing-15;
+              display: inline-block;
+              position: absolute;
+              left: calc(40% + 10px);
+              bottom: 15px;
+              color: $whiteColor;
+            }
+
+            .one-row-input-content{
+              margin: 20.5px 0 0 0;
+              .table-checkbox{
+                color: $heavyColor;
+                .mat-checkbox-inner-container{
+                  background: $whiteColor;
+                }
+              }
+            }
+
+            .input-tag{
+              color:$tableInputTagColor;
+              width:100%;
+            }
+            .input-content{
+              width: 100%;
+              input{
+                height:$input-entry-row;
+                width:100%;
+                float:left;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                padding-left: 2px;
+                &.middle-height-input{
+                  height: (3*$input-entry-row);
+                }
+              }
+              textarea{
+                width:100%;
+                float:left;
+                height: (3*$input-entry-row);
+              }
+
+              .radio-group-wrapper{
+                padding-top: $spacing-5;
+                .table-radio-btn{
+                  margin-left: $spacing-5;
+                  color: $heavyColor;
+                }
+              }
+
+              &.date-period-input-wrapper{
+                .date-period-input{
+                  width: calc((90% -10px) / 2);
+                  float:left;
+                }
+                .date-period-dash{
+                  width:10px;
+                  text-align: center;
+                  float:left;
+                }
+              }
+            }
+          }
+          .third-layer{
+            background: $tableThreeLayerBackgroundColor;
+            color:$tableInputDisplayTextColor;
+            .third-layer-header{
+              border-bottom: 1px solid $heavyColor;
+              line-height: 75px;
+              height: 75px;
+              .third-layer-title{
+                font-size: $secondTitleFontSize;
+                float: left;
+                color:$panelBackgroundColor;
+              }
+              .third-layer-btn-group{
+                float: right;
+                .third-layer-btn-wrapper{
+                  float: left;
+                  margin-left: $spacing-20;
+                  cursor: pointer;
+                  .second-layer-btn{
+                    font-size: $pageTitleFontSize;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+   .datatable-footer{
+     padding-top: 10px;
+     .datatable-pager{
+       .pager{
+         li{
+          // margin:0 $spacing-10 !important;
+          padding: 0;
+          margin: 0;
+          // display: inline-block;
+          float: left;
+          list-style: none;
+          border: none;
+          height: 32px;
+          color: $warmGrey;
+          background-color: $whiteColor;
+          border: 1px solid $greyWhite;
+          line-height: 30px;
+          text-align: center;
+
+          &:first-child {
+           display: none;
+          }
+
+          &:nth-child(2) {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            a:before{
+            content: "Previous";
+            text-align: center;
+            }
+          }
+
+          &:nth-last-child(2){
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            a:before{
+              content: "Next";
+              text-align: center;
+            }
+          }
+
+          &:last-child {
+            display: none;
+          }
+
+          &:hover {
+            background-color: $pagerHoverColor;
+          }
+
+          a {
+            color: $tableRowTextColor;
+            padding: 8px 12px;
+            line-height: 1;
+
+            &:hover {
+              cursor: pointer;
+              text-decoration: none;
+            }
+
+            &.disabled a {
+              cursor: not-allowed;
+            }
+          }
+
+          &.active, &.active:hover{
+            background-color: $tableHeaderColor;
+            border: 1px solid $tableHeaderColor;
+            a {
+              color: $whiteColor;
+            }
+          }
+         }
+       }
+     }
+   }
+
+}

@@ -1,0 +1,15 @@
+﻿{
+  "job": "send sms",
+  "entity": "company",
+  "entityId": 50,
+  "task": "send sms",
+  "taskId": 1509,
+  "smsProvider":  "twilio",
+  "Content": {
+    "receiverPhoneNumber": "+886917509248",
+    "smsContent": "This is 中文"
+  },
+  "requester": "Kevin Kao",
+  "requesterEmail": "kevika@microsoft.com",
+  "requestDateTime": "2017-02-19T15:46:02.2935009Z"
+}
