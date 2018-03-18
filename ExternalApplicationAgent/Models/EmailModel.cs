@@ -25,7 +25,7 @@ namespace ExternalApplicationAgent.Models
         
         public async Task Send()
         {
-            var apiKey = "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";
+            var apiKey = "xxxxxxx";
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(senderEmail, senderName);
             var to = new EmailAddress(receverEmail, receverName);            
